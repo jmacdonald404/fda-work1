@@ -1,0 +1,141 @@
+<% date_selected = @date ? @date : 2.days.from_now.in_time_zone('Pacific Time (US & Canada)') %>
+<%# if current_user&.promotion_statuses&.where("active = true")&.any? %>
+  <%# p = current_user.promotion_statuses.where("active = true").last.promotion.delivery_fee_discount_percentage %>
+<%# else %>
+  <%# p = "" %>
+<%# end %>
+<% p = 1.0 %>
+
+<div class="summary-container" data-turbolinks-action="replace">
+  <div id="order-summary-card" class="card summary-card">
+    <div class="summary-card_header">
+      <p class="summary-card_header_order">Your order</p>
+      <p class="summary-card_header_time">
+        <span class="summary-card_header_pre">For</span> <span id="summaryHeaderDate">
+        <%= date_selected.strftime("%a, %b #{date_selected.day.ordinalize}") %></span>
+      </p>
+      <p class="summary-card_header_time_next">
+        <span class="summary-card_header_pre">Arriving</span> <span id="summaryHeaderTime"> 12:00 PM - 12:15 PM </span>
+      </p>
+      <hr style="height:3px;width:50px;float:left;margin-top:3px;margin-left:4px;background-color:#2fc2a2;">
+    </div>
+    <div class="summary-card_body">
+      <% if @catering_dishes.present? %>
+        <% @catering_dishes.sort_by(&:created_at).each do |catering_dish| %>
+          <div class="dish-container">
+            <div class="dish-quantity" data-catering-dish-id=<%=catering_dish.id%> data-dish-id=<%= catering_dish.subselection.id %>>
+              <span class="btn-group minus">
+                  <button type="button" class="btn btn-default btn-number" data-type="minus" data-turbolinks-scroll=true>
+                      <span class="minus cart-minus"> - </span>
+                  </button>
+              </span>
+              <input type="text" name="quant[1]" class="form-control input-number" disabled="disabled" value=<%=catering_dish.quantity%> data-turbolinks-action="replace" data-quant-adjusted=<%= catering_dish.quantity.to_i*catering_dish.subselection.serves.to_i %> data-summary-restaurant-id=<%= catering_dish.subselection.dish.restaurant_id %>>
+              <span class="btn-group plus">
+                  <button type="button" class="btn btn-default btn-number" data-type="plus" data-turbolinks-scroll=true>
+                      <span class="plus cart-plus"> + </span>
+                  </button>
+              </span>
+            </div>
+            <div class='dish-title'>
+              <div>
+                <span class="dish-name"><%= catering_dish.subselection.dish.name %></span>
+                <div class='dish-price summary-right' data-dish-price=<%= catering_dish.subselection.price %>>
+                  $<%= catering_dish.subselection.price.to_i * catering_dish.quantity.to_i %>
+                </div>
+              </div>
+              <div>
+                <span class="dish-subselection"><%= catering_dish.subselection.name %></span>
+              </div>
+              <div>
+                <span class="dish-restaurant"><%= catering_dish.subselection.dish.restaurant.name %></span>
+                <div class='dish-delete summary-right' data-turbolinks-scroll=true data-remote="true" data-catering-dish-id=<%=catering_dish.id%>>
+                  remove
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+        <% end %>
+        <div class="dish-cost">
+          <table class="table dish-cost_summary">
+            <hr>
+            <tbody>
+              <tr>
+                <td><%= image_tag("tooltip_questionmark.svg", class: "restaurant-info-icon restaurant-info-cart", width: "20", :alt => "Deliveryapp Info", :data => { 'tippy-placement' => 'left', 'tippy-content' => "
+                         <div style='font-family:SF-Pro-Display-Thin;font-size:17px;letter-spacing:0.5px;'>
+                             <div>
+                                <h4 style='font-family:SF-Pro-Display-Regular'>On-time Delivery Guarantee</h4>
+                             </div><br>
+
+                             <div>
+                                Whether it’s getting a team meeting started or preparing for a client presentation, we know how important being on-time is.
+                             </div><br>
+                             <div>
+                                If any of our deliveries are late by more than 5 minutes, we’ll refund the delivery fee—no questions asked.
+                             </div>
+                         </div>
+                 " }) %></td>
+                <td class="label-cell">On-time Delivery</td>
+                <% if BaseDeliveryFee.any? %>
+                  <% bdf = BaseDeliveryFee.last.base_fee %>
+                  <% if p != "" %>
+                    <td class="label-value">$<%= sprintf("%2.2f", bdf) %></td>
+                  <% else %>
+                    <td class="label-value" data-delivery-fee="<%= bdf %>">$<%= sprintf("%2.2f", bdf) %></td>
+                  <% end %>
+                <% else %>
+                  <% bdf = 20.0 %>
+                  <% if p != "" %>
+                    <td class="label-value">$20</td>
+                  <% else %>
+                    <td class="label-value" data-delivery-fee="20">$20</td>
+                  <% end %>
+                <% end %>
+              </tr>
+              <% if p != "" %>
+                <tr>
+                  <td></td>
+                  <td class="label-cell" style="color:green">Discount</td>
+                  <td class="label-value" style="color:green" data-delivery-fee="<%= bdf - bdf*p/100.0%>">-$<%= sprintf("%2.2f", bdf*p/100.0) %>"></td>
+                </tr>
+              <% else %>
+              <% end %>
+              <tr>
+                <td></td>
+                <td class="label-cell">GST</td>
+                <td class="label-value" data-gst style="width:65px"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+        <div class="summary-card_noitems">
+          <%= image_tag("noodle_bowl_icon.svg", class: "navbar-brand", width: "80", height:"80", :alt => "Deliveryapp Noodles") %>
+          <div>
+            Looks like you haven’t added any dishes yet!
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+    <div style="position: absolute;bottom: -80px;">Need help with an order? <br><a href="#" style="color: #5951ff">Get in touch with an order specialist</a></div>
+    <% if @catering_dishes.present? && current_user.nil? %>
+      <div class="summary-card_checkout" data-turbolinks-action="replace">
+        <button type="button" id="loginCheckout" class="btn btn-primary summary-card_checkout_button">Checkout - <span class="label-value total" data-total></span></button>
+      </div>
+    <% elsif @catering_dishes.present? && current_user.present? %>
+      <%# if @catering_order.address.present? %>
+      <% if @catering_order.present? %>
+        <div class="summary-card_checkout" data-turbolinks-action="replace">
+          <button type="button" id="orderCheckout" class="btn btn-primary summary-card_checkout_button">Checkout - <span class="label-value total" data-total></span></button>
+        </div>
+      <% else %>
+        <div class="summary-card_checkout" data-turbolinks-action="replace">
+          <button type="button" id="orderCheckout" class="btn btn-primary summary-card_checkout_button">Checkout - <span class="label-value total" data-total></span></button>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

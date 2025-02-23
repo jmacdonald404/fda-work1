@@ -1,0 +1,42 @@
+#dishMinimum{
+  z-index:1090;
+}
+.modaldishminimum{
+  min-width: 760px !important;
+  &-header {
+    border:none !important;
+  }
+  &-body {
+    padding-top: 0 !important;
+  }
+  &-content {
+    border:none !important;
+    margin-top: 50px;
+    margin-left: 16px;
+    padding:45px 30px;
+  }
+  &-title{
+    margin:auto;
+    font-size: 29px;
+  }
+  &-subtitle{
+    text-align: center;
+    font-family: GothamLight;
+    font-size: 18px;
+  }
+  &-button_group {
+    margin-top: 80px;
+    align-items: center !important;
+    > a {
+      > button {
+        width: 401px;
+        height: 60px;
+        margin-bottom: 17px;
+        font-family: SF-Pro-Display-Light;
+        font-size: 19px;
+        letter-spacing: .5px;
+      }
+    }
+
+  }
+}

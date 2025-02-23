@@ -1,0 +1,272 @@
+.card{
+  --bs-card-border-radius: 0 !important;
+  border-top-left-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+.modal-footer > * {
+  margin: 0 !important;
+}
+.modaldishpicker {
+  font-family: "SF-Pro-Display-Regular";
+  width: 100% !important;
+  max-width: 614px !important;
+  margin-top: 50px !important;
+  height: 50%;
+  //overflow-y: scroll;
+  //overflow-x: hidden;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  &-body {
+    padding: 0 !important;
+    .dishcardmodal {
+      font-family: "SF-Pro-Display-Bold";
+      background-color: #F4F6F7;
+      border: none;
+      // border-radius:0px !important;
+      width: 100%;
+      //height: 550px;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      height: calc(100vh - 166px);
+
+
+      &-notes {
+        width:100%;
+        border:none;
+        font-family: SF-Pro-Display-Light;
+        font-size: 18px;
+        &::placeholder {
+          color: #6e6cff;
+          opacity: 1;
+        }
+      }
+
+      > a {
+        text-decoration: none;
+        color: inherit;
+        &:hover {
+          color: inherit;
+        }
+      }
+
+      &_body {
+        //padding: 24px 40px;
+        padding: 0 !important;
+      }
+
+      &_container {
+        padding: 24px 40px;
+        overflow-y: hidden;
+        overflow-x: hidden;
+      }
+      &_badge {
+        font-size: 14px;
+        width: 71px;
+        height: 27px;
+        font-family: GothamBook;
+        font-weight: 400;
+        line-height: 20px;
+        margin-right: 8px;
+
+        &-container {
+          bottom: 1.25rem;
+          position: absolute;
+          display: inline-block;
+        }
+
+        &_meat {
+          background-color: #FF416D;
+        }
+
+        &_veg {
+          background-color: #3BD286;
+        }
+      }
+
+      &_dietarycircle, &_dietaryoption {
+        padding: 3px 3px;
+        display: block;
+        background-color: transparent;
+        color: #9B9B9B;
+        height: 36px;
+        width: 36px;
+        //border-radius: 50%;
+        //border: 2px solid #9B9B9B;
+        line-height: 20px;
+        margin-left: 4px;
+        margin-top: -5px;
+      }
+      &_dietarycircle {
+        height: 36px;
+        width: 36px;
+      }
+      &_dietaryoption {
+        height: 36px;
+        width: 120px;
+      }
+
+      &_label {
+        display: inline-block;
+      }
+
+      &_price {
+        text-align: right;
+      }
+
+      &_text {
+        min-height: 59px;
+        max-width: 515px;
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 30px !important;
+      }
+
+      &_text, &_price {
+        font-family: "SF-Pro-Display-Light";
+      }
+
+      &_title {
+        font-size: 26px;
+        width: 400px;
+        color: #696969;
+      }
+    }
+  }
+
+  &-button {
+    &_group {
+      display: block !important;
+    }
+
+    &_update {
+      font-size: 20px !important;
+      width: 100% !important;
+      height: 67px !important;
+      background-color: #5951FF !important;
+      border-color: #5951FF !important;
+      border-radius: 10px !important;
+      display: inline-block;
+      border-top-left-radius: 0 !important;
+      border-top-right-radius: 0 !important;
+    }
+  }
+
+  &-content {
+    border: none !important;
+    border-radius: 14px !important;
+    background-color: rgba(0,0,0,0)!important;
+  }
+
+  &-form {
+    //margin-top: 20px;
+    
+    justify-content: center !important;
+    display: flex;
+
+    &_special {
+      border: none !important;
+      border-radius: 0 !important;
+      margin-right: 210px !important;
+    }
+
+    &_counter {
+
+    }
+  }
+
+  &-footer {
+    display: block !important;
+    text-align: center !important;
+    padding: 0 !important;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    bottom: 0;
+    border-top: none !important;
+    //box-shadow: 0px -15px 18px 7px #eee;
+  }
+
+  &-quantity {
+    //height: 90px;
+    //
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+    &_count {
+    	height: 40.04px !important;
+      width: 108.25px !important;
+    	border: 1px solid rgba(155,155,155,0.33);
+
+      font-size: 20px !important;
+      min-width: 35px;
+      text-align: center;
+    }
+
+    &_plus {
+      cursor: pointer;
+      color: #5951FF;
+      font-size: 26px;
+      display: inline-block;
+      vertical-align: top;
+      width: 21px;
+      height: 44px;
+      text-align: center;
+      padding-left: 6px;
+    }
+
+    &_minus {
+      cursor: pointer;
+      color: #5951FF;
+      font-size: 36px;
+      display: inline-block;
+      vertical-align: top;
+      width: 21px;
+      height: 55px;
+      text-align: center;
+      background-clip: padding-box;
+      padding-right: 23px;
+    }
+  }
+}
+#sub-id {
+  display: none;
+}
+.subcardrow, .subcardnotes {
+  border: none !important;
+  border-radius: 10px !important;
+  margin-bottom: 18px !important;
+  margin-left: -19px !important;
+  margin-right: -19px !important;
+  padding: 16px 10px 14px 21px !important;
+}
+
+.subcard {
+  &-name {
+    color: #545454;
+    font-family: SF-Pro-Display-Regular;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  &-desc {
+    color: #696969;
+    font-family: "SF-Pro-Display-Light";
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 20px;
+    margin-top: 15px;
+  }
+  &-price {
+    color: #B7B7B7;	font-family: "SF-Pro-Display-Medium";	font-size: 20px;	font-weight: 500;	line-height: 24px;	text-align: right;
+    position: absolute;
+    right: 38px;
+  }
+  &-footer {
+    margin: 0 !important;
+    margin-top: 42px !important;
+  }
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.9" />
+  <meta name="turbolinks-cache-control" content="no-preview">
+  <title><%= content_for?(:title) ? yield(:title) : "Deliveryapp — Office Catering" %></title>
+
+
+  <%# javascript_include_tag 'application', data: { turbolinks_track: true }%>
+  <%= javascript_include_tag 'application', 'data-turbo-track': 'reload', type: "module" %>
+  <%= stylesheet_link_tag    'application', media: 'all', data: { turbolinks_track: true } %>
+  <%= stylesheet_link_tag "fontawesome", "data-turbo-track": "reload" %>
+  <%= favicon_link_tag(source='favicon.png') %>
+  <%= csrf_meta_tags %>
+  <%= tag :meta, :name => "stripe-key", :content => Rails.application.credentials[:stripe_public_key] %>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+  <script src="https://js.stripe.com/v3/"></script>
+  <%# javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+  <script>
+    /*to prevent Firefox FOUC, this must be here*/
+    let FF_FOUC_FIX;
+  </script>
+  <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+</head>
+<%= render "modals/loader_modal" %>
+<body style="margin-top:-22px;overflow-x: hidden;">
+  <div class="dashboardpage-body">
+    <div class="dashboardpage-body-container">
+      <div class="container-fluid cateringdashboard">
+        <div class="nav-container" id="nav-container" style="position: absolute;background: white;width: 100%;margin-bottom: 100px;">
+<!--        <div class="nav-container" id="nav-container" style="position: absolute;background: white;width: 100%;margin-bottom: 100px;" data: {'turbolinks-action': "replace"}>-->
+          <%= render "layouts/dashboard_nav" %>
+        </div>
+<!--        <div style="min-height:95px"></div>-->
+        <div class="container-fluid">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-footer" style="font-size: 12px; color:white">
+      <div class="footer-row" style="width: 1250px;justify-content: space-between;font-size: 1rem;">
+        <div class="l1" style="font-family: SF-Pro-Display-Light; padding-left: 0px;line-height: 35px;letter-spacing: 0.2px">
+          <div><%= link_to(image_tag("logo_citrus_borderless_v11_2.svg", class: "", width: "150", height:"50", :alt => "Deliveryapp Logo"), dashboard_path) %></div>
+        </div>
+        <div class="l2" style="font-family: GothamMedium;padding-bottom: 12px;line-height: 34px;">
+          <div class="dashboard-footer-header">PRIMARY PAGES</div>
+          <div class="dashboard-footer-list">
+            <ul>
+              <li>Home</li>
+              <li>What We Do</li>
+              <li>About Us</li>
+              <li></li>
+            </ul>
+          </div>
+        </div>
+        <div class="l3" style="font-family: GothamMedium;padding-bottom: 12px;line-height: 34px;">
+          <div class="dashboard-footer-header">WORK WITH US</div>
+          <div class="dashboard-footer-list">
+            <ul>
+              <li>Become a Restaurant</li>
+              <li>Become a Driver</li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+        </div>
+        <div class="l4" style="font-family: GothamMedium;padding-bottom: 12px;line-height: 34px;">
+          <div class="dashboard-footer-header">SUPPORT</div>
+          <div class="dashboard-footer-list">
+            <ul>
+              <li>FAQ</li>
+              <li>Privacy Policy</li>
+              <li>Terms of Service</li>
+              <li>Contact Us</li>
+            </ul>
+          </div>
+        </div>
+        <div class="l5" style="font-family: GothamMedium;padding-bottom: 12px;line-height: 34px;">
+          <div class="dashboard-footer-header">SUBSCRIBE TO OUR NEWSLETTER</div>
+          <div class="dashboard-footer-list">
+            <ul style="line-height: 20px">
+              <li style="width:312px; margin-top: 23px"><span>Get updates when we launch new restaurant</span> <span style="position: relative;top:0px;">partners and dish offerings. We'll never spam you.</span></li>
+              <li style="height:24px"></li>
+              <li>
+                <%= form_for(@newsletter_subscriber, url: {:controller => "dashboard", :action => "create_newsletter_subscriber"}) do |f| %>
+                  <%= f.text_field :email, required: true, :id => "newsletterEmail", placeholder: "Enter your email", style: "border:none;border-radius: 3px!important;height:36px;padding-left: 5px;" %>
+                  <%= f.submit "Subscribe", :class => "btn btn-primary", :id => "newsletterSubscribe", style: "margin-left:10px" %>
+                <% end %>
+<!--                <input type="text" placeholder="Enter your email" style="border:none;border-radius: 3px!important;height:36px;padding-left: 5px;">-->
+<!--                <button class="btn btn-primary" style="margin-left:10px">Subscribe</button>-->
+                <div class="invalid-feedback" id="newsletterEmailError">
+                  Please provide a valid email.
+                </div>
+              </li>
+              <li></li>
+            </ul>
+          </div>
+        </div>
+<!--        <hr style="width: 100%;background-color: #8698bf;height: 0px;">-->
+        <div style="width:100%;display: flex;justify-content: space-between; border-top: 1px solid rgba(255, 255, 255, 0.18);margin-top: 42px;padding-top: 20px;">
+          <div>
+            <div style="font-size: 14px;padding-top: 14px;color: #8698bf;"><div style="font-family: SF-Pro-Display-Thin;display: inline;padding-right: 6px">©</div><%= Time.now.year %> Deliveryapp</div>
+            <div style="font-size: 14px;color: #8698bf">Made with ♡ in Vancouver</div>
+          </div>
+
+          <div style="color:#8698bf;display: flex;align-items: center"><i class="fab fa-instagram fa-2x"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render "modals/datepicker_modal" %>
+  <%= render "modals/banner_modal" %>
+  <div id="dishmodal-container"><%= render "modals/dish_modal", locals: {dish: @dish} %></div>
+  <%# render "modals/signup_modal" %>
+  <%# render "modals/login_modal" %>
+  <%= render "modals/reset_password_modal" %>
+  <%= render "modals/reset_pw_confirm_modal" %>
+  <%= render "modals/restaurant_closed_modal" %>
+  <%= render "modals/dish_minimum_modal" %>
+  <%= render "modals/dish_none_added_modal" %>
+  <%= render "modals/too_many_restaurants_modal" %>
+  <%#= render 'modals/cancel_confirmation_modal' %>
+  <% if current_user %>
+    <div id="cardselect-container"><%= render "modals/card_select_modal", locals: {current_user: @current_user} %></div>
+    <div id="payment-container"><%= render "modals/payment_modal" %></div>
+    <div id="ordercomplete-container"><%= render "modals/order_complete_modal" %></div>
+    <div id="review-container"><%= render "modals/review_summary_modal", locals: {catering_dishes: @catering_dishes} %></div>
+  <% end %>
+</body>
+<div class="col col-lg-2" id="summaryContainer" style="">
+  <%=render "dashboard/summary", locals: {restaurant: @restaurant, catering_dishes: @catering_dishes} %>
+</div>
+</html>

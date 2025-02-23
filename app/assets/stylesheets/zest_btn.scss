@@ -1,0 +1,32 @@
+.btn-zest {
+  background-color: #8290e4;
+  border-color: #8290e4;
+  border-radius: 4px !important;
+  margin: 20px 0px;
+  width: 100px;
+  color: white;
+}
+.btn-zest:hover {
+  background-color: #9ba8e8;
+}
+.btn-zest:focus,
+.btn-zest:active,
+.btn-zest.active {
+  background-color: #8290e4;
+  border-color: #8290e4;
+}
+.btn-zest.disabled:hover,
+.btn-zest.disabled:focus,
+.btn-zest.disabled:active,
+.btn-zest.disabled.active,
+.btn-zest[disabled]:hover,
+.btn-zest[disabled]:focus,
+.btn-zest[disabled]:active,
+.btn-zest[disabled].active,
+fieldset[disabled] .btn-zest:hover,
+fieldset[disabled] .btn-zest:focus,
+fieldset[disabled] .btn-zest:active,
+fieldset[disabled] .btn-zest.active {
+  background-color: #8290e4;
+  border-color: #8290e4;
+}

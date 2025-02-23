@@ -1,0 +1,21 @@
+// Place all the styles related to the after_signup controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@media only screen and (max-width: 500px) {
+  #cc-complete{
+    width: 60%;
+    margin-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 501px) {
+  #cc-complete{
+    width: 40%;
+    margin-bottom: 30px;
+    margin-top: 10px;
+  }
+}
+// #cc-complete{
+//   width: 30%;
+//   margin-bottom: 30px;
+// }

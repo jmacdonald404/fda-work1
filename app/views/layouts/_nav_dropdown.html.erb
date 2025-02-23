@@ -1,0 +1,116 @@
+<% date_selected = @date ? @date : 2.days.from_now.in_time_zone('Pacific Time (US & Canada)') %>
+
+<div class="row" id="dropdown-row" data-turbolinks-permanent>
+  <div class="dropdown-title">
+    Choose a Date, Time, Budget & Dish type
+  </div>
+  <div class="col col-xs-12 col-sm-9 pl-0 navdropdown">
+    <div class="dropdown dropdown-filters" style="min-width: 140%">
+      <div class="btn-group">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownDate" data-target="#cateringDatePicker" data-catering-date=<%=time%> >
+          <div
+            class="input-group log-event"
+            id="datetimepicker1"
+            data-td-target-input="nearest"
+            data-td-target-toggle="nearest"
+          >
+            <input
+              id="datetimepicker1Input"
+              type="text"
+              class="form-control"
+              data-td-target="#datetimepicker1"
+            />
+            <span
+              class="input-group-text"
+              data-td-target="#datetimepicker1"
+              data-td-toggle="datetimepicker"
+            >
+              <%=image_tag("filter_calendar.svg", class: "dropdown-iconwrapper_icon_new2 dropdown-iconwrapper_icon", :alt => "Icon Calendar")%>
+            </span>
+          </div>
+            
+          
+          <span id="cateringDate" data-date-selected=<%=date_selected.strftime("%d/%m/%Y")%>>
+            <%= date_selected.strftime("%A, %B #{date_selected.to_time.day.ordinalize}") %>
+          </span>
+          <i class="dropdown-arrow"><%=image_tag("filter_dropdown_arrow.svg") %></i>
+        </button>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary dropdown-toggle" id="dropdownTime" aria-haspopup="true">
+          <div class="dropdown-iconwrapper">
+            <%=image_tag("icon_time_v3.svg", class: "dropdown-iconwrapper_icon", :alt => "Icon Time")%>
+          </div>
+          <span id="time-content" data-time-selected="1">
+            12:00 PM - 12:15 PM
+          </span>
+          <i class="dropdown-arrow"><%=image_tag("filter_dropdown_arrow.svg") %></i>
+        </button>
+
+        <div class="dropdown-menu dropdown-menufilters" aria-labelledby="dropdownTime">
+          <li class="dropdown-item time-item" id="1"> 11:00 AM - 11:15 AM </li>
+          <li class="dropdown-item time-item" id="2"> 11:15 AM - 11:30 AM </li>
+          <li class="dropdown-item time-item" id="3"> 11:30 AM - 11:45 AM </li>
+          <li class="dropdown-item time-item" id="4"> 11:45 AM - 12:00 PM </li>
+          <li class="dropdown-item time-item" id="5"> 12:00 PM - 12:15 PM </li>
+          <li class="dropdown-item time-item" id="6"> 12:15 PM - 12:30 PM </li>
+          <li class="dropdown-item time-item" id="7"> 12:30 PM - 12:45 PM </li>
+          <li class="dropdown-item time-item" id="8"> 12:45 PM - 1:00 PM </li>
+          <li class="dropdown-item time-item" id="9"> 1:00 PM - 1:15 PM </li>
+          <li class="dropdown-item time-item" id="10"> 1:15 PM - 1:30 PM </li>
+          <li class="dropdown-item time-item" id="11"> 1:30 PM - 1:45 PM </li>
+          <li class="dropdown-item time-item" id="11"> 1:45 PM - 2:00 PM </li>
+          <li class="dropdown-item time-item" id="11"> 2:00 PM - 2:15 PM </li>
+          <li class="dropdown-item time-item" id="11"> 2:15 PM - 2:30 PM </li>
+          <li class="dropdown-item time-item" id="11"> 2:30 PM - 2:45 PM </li>
+          <li class="dropdown-item time-item" id="11"> 2:45 PM - 3:00 PM </li>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary dropdown-toggle" id="dropdownCost" aria-haspopup="true">
+          <div class="dropdown-iconwrapper">
+            <%=image_tag("icon_budget_v2.svg", class: "dropdown-iconwrapper_icon", :alt => "Icon Budget")%>
+          </div>
+          <span id="price-content" data-price-filter="9999">
+            Budget per person
+          </span>
+          <i class="dropdown-arrow"><%=image_tag("filter_dropdown_arrow.svg") %></i>
+        </button>
+        <div class="dropdown-menu dropdown-menufilters" aria-labelledby="dropdownCost">
+          <li class="dropdown-item price-item" data-price-filter="9999"> Show all </li>
+          <li class="dropdown-item price-item" data-price-filter="10"> $10 and less </li>
+          <li class="dropdown-item price-item" data-price-filter="12"> $12 and less </li>
+          <li class="dropdown-item price-item" data-price-filter="15"> $15 and less </li>
+          <li class="dropdown-item price-item" data-price-filter="20"> $20 and less </li>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary dropdown-toggle" id="dropdownType" aria-haspopup="true">
+          <div class="dropdown-iconwrapper">
+            <%=image_tag("filter_dishtype.svg", class: "dropdown-iconwrapper_icon_new dropdown-iconwrapper_icon", :alt => "Icon Type")%>
+          </div>
+          <span id="type-content">
+            Dish Types
+          </span>
+          <i class="dropdown-arrow"><%=image_tag("filter_dropdown_arrow.svg") %></i>
+        </button>
+        <div class="dropdown-menu dropdown-menufilters dropdown-menu-type" aria-labelledby="dropdownType">
+          <form>
+            <li class="dropdown-item type-item" data-dish-type="0"> <div class="select-icon"></div>Show All </li>
+            <li class="dropdown-item type-item" data-dish-type="1"> <div class="select-icon"></div>Individually Packed </li>
+            <li class="dropdown-item type-item" data-dish-type="2"> <div class="select-icon"></div>Sharing Platters </li>
+            <li class="dropdown-item type-item" data-dish-type="3"> <div class="select-icon"></div>Gluten-free </li>
+            <li class="dropdown-item type-item" data-dish-type="4"> <div class="select-icon"></div>Dairy-free </li>
+            <li class="dropdown-item type-item" data-dish-type="5"> <div class="select-icon"></div>Vegan </li>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="col col-xs-0 col-lg-3">
+  </div>
+</div>

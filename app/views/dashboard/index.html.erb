@@ -1,0 +1,21 @@
+<%= render "layouts/jumbotron" %>
+<div class="container" id="maincontent">
+  <div class="row index-container">
+    <div class="col col-lg-2">
+      <%= render "restaurants", locals: {restaurants: @restaurants} %>
+    </div>
+    <div class="col col-lg-7">
+      <%= render "menu", locals: {restaurant: @restaurant} %>
+    </div>
+    <div class="col col-lg-2" id="summaryTarget" style="margin-right:40px">
+    </div>
+    <% if @catering_order.present? %>
+      <%= hidden_field_tag 'catering_order_id', @catering_order.id, data: {'turbolinks-action': "replace"} %>
+      <% if current_user.present? %>
+        <%= hidden_field_tag 'catering_order_address', current_user.office_address, data: {'turbolinks-action': "replace"} %>
+      <% else %>
+        <%= hidden_field_tag 'catering_order_address', @catering_order.address, data: {'turbolinks-action': "replace"} %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

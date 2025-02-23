@@ -1,0 +1,72 @@
+.modaldatepicker {
+  font-family: "SF-Pro-Display-Regular";
+  width: 100% !important;
+  max-width: 620px !important;
+  padding-left: 100px;
+  padding-right: 100px;
+
+  &-body {
+    border: 1px solid rgba(89, 81, 255, 1) !important;
+    height: 309px !important;
+  }
+
+  &-content {
+    border: 0 !important;
+    //margin-top: 160px;
+    padding: 43px;
+  }
+
+  &-footer {
+    display: block !important;
+    text-align: center !important;
+    padding: 0 !important;
+    padding-top: 70px !important;
+  }
+
+  &-title {
+    font-size: 30px;
+    color: #4A4A4A !important;
+    padding: 1rem 1rem;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+    text-align: center;
+  }
+
+  &-subtitle {
+    font-family: 'GothamBook';
+    line-height: 30px;
+    color: #4A4A4A;
+    margin-top: -6px;
+    padding-bottom: 20px;
+    text-align: center;
+  }
+
+  &-button {
+    &_group {
+      display: block !important;
+    }
+
+    &_update {
+      background-color: #5951FF !important;
+      border-color: #5951FF !important;
+      border-radius: 5px !important;
+      display: inline-block;
+    }
+
+    &_cancel {
+      color: #9B9B9B !important;
+      margin-bottom: 20px;
+      width: 70px !important;
+      border-bottom: 1px solid #9B9B9B !important;
+      padding-bottom: 0px !important;
+    }
+  }
+}
+
+.modal-backdrop {
+  background-color: white !important;
+  //background-color: rgba(45, 57, 88, 0.85) !important;
+  &.show {
+    opacity: 0.99 !important;
+  }
+}

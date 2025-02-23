@@ -1,0 +1,73 @@
+<div class="modal" tabindex="-1" role="dialog" id="dishModal" data-backdrop="static">
+  <div style="width: 100% !important;
+      max-width: 614px !important;
+      margin: auto;
+      position: relative;
+      ">
+    <button type="button" class="modal-close-white close" data-dismiss="modal" aria-label="Close" style="top:0px;right:-80px;"><span aria-hidden="true">&times;</span></button>
+  </div>
+
+  <div class="modal-dialog modaldishpicker" role="document" >
+    <div class="modal-content modaldishpicker-content">
+<!--      <button type="button" class="modal-close close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+      <div class="modal-body modaldishpicker-body">
+        <div class="card mx-auto dishcardmodal">
+          <img class="card-img-top dishcardmodal_image" src="" alt="Card image cap">
+          <div class="card-body dishcardmodal_body">
+            <div class="dishcardmodal_container">
+              <div class="row">
+              <div class="col-sm-9">
+                <h5 class="card-title dishcardmodal_title">
+                  Placeholder
+                </h5>
+              </div>
+<!--              <div class="col-sm-3">-->
+<!--                <h5 class="card-title dishcardmodal_price">-->
+<!--                  $10-->
+<!--                </h5>-->
+<!--              </div>-->
+            </div>
+              <p class="card-text dishcardmodal_text">
+                Placeholder
+              </p>
+<!--              <div class="dishcardmodal_badge-container">-->
+<!--                <span class="badge badge-primary dishcardmodal_badge dishcardmodal_badge_meat">MEAT</span>-->
+<!--                <span class="badge badge-primary dishcardmodal_dietarycircle">GF</span>-->
+<!--              </div>-->
+              <div class="dishcardmodal_subselection">
+              </div>
+              <div class="card row subcardnotes">
+                <div class="row" style="margin:0;">
+                  <div style="width:100%;">
+<!--                    <input class="dishcardmodal-notes" maxlength="60" type="text" placeholder="Add special instructions (optional)">-->
+                    <textarea class="dishcardmodal-notes" maxlength="60" type="text" placeholder="Add special instructions (optional)" rows="2"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div style="width:100%;height:2px;position: absolute;"></div>
+        </div>
+        <div class="modal-footer modaldishpicker-footer">
+          <div class="btn-group-justified btn-group-vertical modaldishpicker-button_group">
+            <%= link_to dashboard_path, id: 'modalUpdateLink', data: {'turbolinks-action': "replace"} do %>
+              <button type="button" id="addToOrder" class="btn btn-primary modaldishpicker-button_update noselect" data-persist="date">Add to Order</button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+<!--      <div class="modal-section modaldishpicker-quantity">-->
+<!--        <form class="form-inline modaldishpicker-form" id="dishCounter" data-dish-counter="">-->
+<!--          <input type="text" class="form-control modaldishpicker-form_special" id="specialInfo" placeholder="Add Special Instructions">-->
+
+<!--          <span class="modaldishpicker-quantity_minus">-</span>-->
+<!--          <input type="number" class="form-control modaldishpicker-quantity_count" id="dishQuantity" name="qty" value="1">-->
+<!--          <span class="modaldishpicker-quantity_plus">+</span>-->
+<!--        </form>-->
+<!--      </div>-->
+
+      <div id="hiddenField" data-restaurant-id="" data-dish-id="" style="visibility: hidden"></div>
+    </div>
+  </div>
+</div>

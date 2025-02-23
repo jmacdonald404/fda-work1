@@ -1,0 +1,43 @@
+
+
+
+#office-li {
+ // cursor: pointer;
+}
+.office-li > li:hover {
+  background-color: yellow;
+}
+
+.office_item {
+  padding: 5px;
+  min-width: 100%;
+  cursor: pointer;
+  text-align: left;
+}
+.office_item:hover {
+  background-color: #f7fcfd;
+}
+.office_item_strong{
+  color: #4F4F4A;
+}
+
+.tt-menu, .tt-open {
+// dropdown suggestions
+  width: 100%;
+}
+
+.fontawesome-control {
+  // font-family: FontAwesome, sans-serif;
+  // for placeholder fontawesome
+}
+
+.typeahead {
+  // font-size: 1.2em;
+}
+
+.input-group-addon-override {
+    color: #4F4F4A !important;
+    background-color: white !important;
+    border-color: white !important;
+
+}

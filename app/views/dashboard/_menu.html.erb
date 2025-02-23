@@ -1,0 +1,116 @@
+<div class="menu-container" data-rest-id="<%= @restaurant.id %>" data-restaurant-minimum-quantity=<%= @restaurant.min_quantity%>>
+  <div class="menu-restaurant_label">
+    <p class="menu-restaurant_title"> <%= @restaurant.name %> </p>
+  </div>
+  <div class="menu-restaurant_label">
+    <% if @restaurant.subtitle.present? %>
+      <p class="menu-restaurant_subtitle"> <%= @restaurant.subtitle.upcase! %> </p>
+    <% end %>
+  </div>
+  <div class="menu-restaurant_blurb">
+    <% if @restaurant.description.present? %>
+      <%= @restaurant.description %>
+    <% end %>
+  </div>
+  <div class="menu-dishes_container mt-4">
+    <div class="row">
+      <% if @dishes.present? %>
+        <% @dishes.each do |dish| %>
+        <div class="col col-sm-12 col-md-6 col-lg-6 pr-0 dishcard-adjust">
+          <div class="card mx-auto dishcard">
+<!--               data-toggle="modal"-->
+<!--               data-target="#dishModal"-->
+<!--               data-turbolinks-scroll=true-->
+<!--               data-dish-id=<%#= dish.id %>-->
+<!--               data-restaurant-id=<%#= @restaurant.id %>-->
+<!--               data-dish-quantity=<%#= find_existing_dishes_quantity(dish.id) %>-->
+
+            <div class="hvrbox">
+              <img class="card-img-top dishcard_image" src=<%= dish.image_url%> src2=<%= dish.image_url2 %> alt="Card image cap">
+              <div class="hvrbox-layer_top">
+                <div class="hvrbox-text dse" id="viewDish" data-turbolinks-scroll=true data-dish-id="<%= dish.id %>" data-restaurant-id="<%= @restaurant.id %>" data-dish-quantity="<%= find_existing_dishes_quantity(dish.id) %>" data-restaurant-open="<%= @restaurant.open3(@catering_order.delivery_time) %>"
+                >View</div>
+                <div class="hvrbox-text quick-add-target" data-turbolinks-scroll=true data-dish-id="<%= dish.id %>" data-restaurant-id="<%= @restaurant.id %>" data-dish-quantity="<%= find_existing_dishes_quantity(dish.id) %>" data-restaurant-open="<%= @restaurant.open3(@catering_order.delivery_time) %>" id="quickAdd">Quick Add</div>
+              </div>
+            </div>
+            <div class="card-body dishcard_body">
+              <div class="row">
+                <div class="col-sm-9 p-0">
+                  <h5 class="card-title dishcard_title">
+                    <%= dish.name %>
+                  </h5>
+                </div>
+                <div class="col-sm-3 p-0">
+                  <h5 class="card-title dishcard_price">
+                    $<%= dish.price %>
+                  </h5>
+                </div>
+              </div>
+              <p class="card-text dishcard_text">
+                <%= dish.description %>
+              </p>
+              <div class="subselection-container" style="display:none;">
+                <% Subselection.where(:dish_id => dish.id).each do |sub| %>
+                  <div class="subselection-card">
+                    <div id="sub-id"><%= sub.id %></div>
+                    <div id="sub-name" class="subcard-name"><%= sub.name %></div>
+                    <div id="sub-desc" class="subcard-desc"><%= sub.description %></div>
+                    <div id="sub-price" class="subcard-price"><%= sub.price %></div>
+                    <div id="sub-gf" class="subcard-gf"><%= sub.gf %></div>
+                    <div id="sub-df" class="subcard-df"><%= sub.df %></div>
+                    <div id="sub-vg" class="subcard-vg"><%= sub.vg %></div>
+                    <div id="sub-gfo" class="subcard-gfo"><%= sub.gfo %></div>
+                    <div id="sub-dfo" class="subcard-dfo"><%= sub.dfo %></div>
+                    <div id="sub-vgo" class="subcard-vgo"><%= sub.vgo %></div>
+                    <div id="sub-type" class="subcard-type"><%= sub.meal_type %></div>
+                  </div>
+                <% end %>
+              </div>
+              <div class="dishcard_badge-container">
+                <%if dish.meal_type.downcase == "meat"%>
+                  <span class="badge badge-primary dishcard_badge dishcard_badge_meat">MEAT</span>
+                <% else %>
+                  <span class="badge badge-primary dishcard_badge dishcard_badge_veg">VEG</span>
+                <% end %>
+                <%# unless dish.dietary == "" %>
+<!--                  <span class="badge badge-primary dishcard_dietarycircle"><%#= dish.dietary %></span>-->
+                <%# end %>
+                <% if dish.subselections.first.gf %>
+                  <span class="badge badge-primary dishcard_dietarycircle"><div class="dishdietary" style="display: none">GF</div><%= image_tag("dietary_gf.svg", :alt => "Gluten Free", :title => "Gluten Free") %></span>
+                <% end %>
+                <% if dish.subselections.first.df %>
+                  <span class="badge badge-primary dishcard_dietarycircle"><div class="dishdietary" style="display: none">DF</div><%= image_tag("dietary_df.svg", :alt => "Dairy Free", :title => "Dairy Free")%></span>
+                <% end %>
+                <% if dish.subselections.first.vg %>
+                  <span class="badge badge-primary dishcard_dietarycircle"><div class="dishdietary" style="display: none">VG</div><%= image_tag("dietary_vg.svg", :alt => "Vegan", :title => "Vegan")%></span>
+                <% end %>
+                <% if dish.subselections.first.gfo %>
+                  <span class="badge badge-primary dishcard_dietaryoption"><div class="dishdietary" style="display: none">GFO</div><%= image_tag("dietary_gf_option.svg", :alt => "Gluten Free Option", :title => "Gluten Free Option")%></span>
+                <% end %>
+                <% if dish.subselections.first.dfo %>
+                  <span class="badge badge-primary dishcard_dietaryoption"><div class="dishdietary" style="display: none">DFO</div><%= image_tag("dietary_df_option.svg", :alt => "Dairy Free Option", :title => "Dairy Free Option")%></span>
+                <% end %>
+                <% if dish.subselections.first.vgo %>
+                  <span class="badge badge-primary dishcard_dietaryoption"><div class="dishdietary" style="display: none">VGO</div><%= image_tag("dietary_vg_option.svg", :alt => "Vegan Option", :title => "Vegan Option")%></span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <% else %>
+        <div class="nodishes-container">
+          <div class="nodishes-icon">
+            <%= image_tag("nodishes.svg", :alt=> "No Dishes Available", :title => "No Dishes Available") %>
+          </div>
+          <div class="nodishes-text">
+            Unfortunately, it doesn't look like there are any <br> food options available with the filter choices you've made.
+            <br><br>
+
+            Please try changing your filter choices.
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

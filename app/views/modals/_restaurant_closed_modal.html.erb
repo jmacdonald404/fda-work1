@@ -1,0 +1,31 @@
+<div class="modal" tabindex="-1" role="dialog" id="restaurantClosedModal" data-backdrop="static">
+  <div class="modal-dialog modaldishminimum" role="document" >
+    <div class="modal-content modaldishminimum-content">
+      <button type="button" class="modal-close close" data-dismiss="modal" aria-label="Close" style="top: -216px;right: 64px;"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-header modaldishminimum-header">
+        <div class="modal-title modaldishminimum-title">Oops!</div>
+      </div>
+      <div class="modal-body modaldishminimum-body">
+        <form class="needs-validation modaldishminimum-form" novalidate>
+          <div class="modal-section">
+            <div class="modaldishminimum-subtitle">
+                <span id="minimum-text-3">
+                  This restaurant is currently unavailable to order from. Please check back later.
+                </span>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="btn-group-justified btn-group-vertical modaldishminimum-button_group">
+        <%= link_to :back do %>
+          <button type="submit" id="dishminimumSubmit" class="btn btn-outline-primary modalcard-button-signup" data-persist="date">Contact Support</button>
+        <% end %>
+        <%= link_to :back do %>
+          <button type="submit" id="dishminimumSubmit" class="btn btn-primary modalcard-button-signup" data-persist="date">Go Back</button>
+        <% end %>
+      </div>
+      <div id="hiddenField" data-restaurant-id="" data-dish-id="" style="visibility: hidden"></div>
+    </div>
+  </div>
+</div>

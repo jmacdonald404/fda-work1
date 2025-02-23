@@ -1,0 +1,176 @@
+.menu {
+  &-container {
+    min-height: 600px;
+    //overflow-y: scroll;
+    //overflow-x: hidden;
+    font-size: 18px;
+    margin-top: 6px;
+    margin-left: 20px;
+    margin-bottom: 80px;
+
+    // hide scrollbar
+    //overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+
+    &::-webkit-scrollbar { /* WebKit */
+      width: 0;
+      height: 0;
+    }
+  }
+
+  &-restaurant {
+    &_label {
+      display: inline-block;
+      padding-right: 11px;
+    }
+
+    &_subtitle {
+      color: #9B9B9B;
+    }
+
+    &_title {
+      font-size: 40px;
+    }
+
+    &_blurb {
+      width: 722px;
+      font-family: 'GothamBook';
+      line-height: 30px;
+      color: #4A4A4A;
+      margin-top: -6px;
+      margin-left: 1px;
+      padding-bottom: 20px;
+    }
+  }
+
+  &-dishes {
+    &_container {
+      margin-top: 28px;
+      padding-left: 10px;
+
+      .dishcard {
+        font-family: "SF-Pro-Display-Bold";
+        background-color: #F4F6F7;
+        border-style: none !important;
+        width: 340px;
+        height: 550px;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-bottom: 26px;
+        cursor: pointer;
+        &:hover {
+          box-shadow: 0px 0px 8px #bbb;
+        }
+
+        > a {
+          text-decoration: none;
+          color: inherit;
+          &:hover {
+            color: inherit;
+          }
+        }
+
+        &_body {
+          .row {
+            margin: 0;
+          }
+        }
+
+        &_badge {
+          font-size: 14px;
+          width: 71px;
+          height: 27px;
+          font-family: GothamBook;
+          font-weight: 400;
+          line-height: 20px;
+          margin-right: 4px;
+
+          &-container {
+            bottom: 18px;
+            position: absolute;
+            display: inline-block;
+          }
+
+          &_meat {
+            background-color: #FF416D;
+          }
+
+          &_veg {
+            background-color: #3BD286;
+          }
+        }
+
+        &_dietarycircle, &_dietaryoption {
+          padding: 3px 5px;
+          background-color: transparent;
+          //display: block;
+          color: #9B9B9B;
+          //border-radius: 50%;
+          //border: 2px solid #9B9B9B;
+          line-height: 20px;
+          margin-left: 0px;
+        }
+        &_dietarycircle {
+          height: 30px;
+          width: 38px;
+        }
+        &_dietaryoption {
+          height: 30px;
+          width: 120px;
+          margin-left: -12px;
+        }
+
+        &_label {
+          display: inline-block;
+        }
+
+        &_text {
+          width: 260px;
+        }
+
+        &_price {
+          text-align: right;
+        }
+
+        &_text {
+          font-size: 16px;
+          font-family: SF-Pro-Display-Light;
+          color: #4A4A4A;
+        }
+
+        &_price {
+          font-size: 20px;
+          color: #545454;
+          font-family: "SF-Pro-Display-Light";;
+        }
+
+        &_title {
+          font-size: 20px;
+          width: 230px;
+          font-family: SF-Pro-Display-Bold;
+          color: #444;
+        }
+      }
+    }
+  }
+}
+.nodishes {
+  &-container{
+    width: 100%;
+    padding-top: 70px;
+    padding-right: 70px;
+  }
+  &-icon {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+  }
+  &-text {
+    text-align: center;
+    font-family: GothamBook;
+    line-height: 30px;
+    font-size: 18px;
+    color: #5e5e5e;
+  }
+}

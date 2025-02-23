@@ -1,0 +1,51 @@
+<div class="modal" tabindex="-1" role="dialog" id="dishMinimum" data-backdrop="static">
+  <div class="modal-dialog modaldishminimum" role="document" >
+    <div class="modal-content modaldishminimum-content">
+      <button type="button" class="modal-close close" data-dismiss="modal" aria-label="Close" style="top: 0px;right: 64px;"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-header modaldishminimum-header">
+        <div class="modal-title modaldishminimum-title">Oops!</div>
+      </div>
+      <div class="modal-body modaldishminimum-body">
+        <form class="needs-validation modaldishminimum-form" id="dishminimum-form" novalidate>
+          <div class="modal-section">
+            <div class="modaldishminimum-subtitle">
+              <% if @catering_order&.subselections.present?%>
+                <% restaurant_ids = [] %>
+                <% @catering_order.subselections.each do |sub| %>
+                  <% restaurant_ids << sub.dish.restaurant_id %>
+                <% end %>
+                <% restaurant_ids = restaurant_ids.uniq %>
+                <% restaurants = Restaurant.find(restaurant_ids.sort) %>
+                  <span id="minimum-text-1" rest-id=<%=restaurants.first.name %>>
+<!--                    Your order can't proceed because <span id="mdr1"><%#= restaurants.first.name %></span> requires a <strong style="font-weight:900">minimum of <span id="min1"><%#= restaurants.first.min_quantity %></span> dishes.</strong>-->
+<!--                    Add <span id="quant1"><%#= restaurants.first.min_quantity %></span> more dishes from <span id="mdr2"><%#= restaurants.first.name %></span> to place your order or simply remove them-->
+
+                    <span id="mdr1"><%= restaurants.first.name %></span> requires a <strong style="font-weight:900">minimum of <span id="min1"><%= restaurants.first.min_quantity %></span> dishes.</strong> Add <span id="quant1"><%= restaurants.first.min_quantity %></span> more dishes from <span id="mdr1"><%= restaurants.first.name %></span> to place your order. If you change your mind, you can remove the dish(es)."
+                  </span>
+                <% if restaurants.count >= 2 %>
+                  <br><br>
+                  <span id="minimum-text-2" rest-id=<%= restaurants.last.name %>>
+<!--                    Your order can't proceed because <span id="mdr3"><%#= restaurants.last.name %></span> requires a <strong style="font-weight:900">minimum of <span id="min2"><%#= restaurants.last.min_quantity %></span> dishes.</strong>-->
+<!--                    Add <span id="quant2"><%#= restaurants.last.min_quantity %></span> more dishes from <span id="mdr4"><%#= restaurants.last.name %></span> to place your order or simply remove them-->
+
+                    <span id="mdr3"><%= restaurants.last.name %></span> requires a <strong style="font-weight:900">minimum of <span id="min2"><%= restaurants.last.min_quantity %></span> dishes.</strong> Add <span id="quant2"><%= restaurants.last.min_quantity %></span> more dishes from <span id="mdr3"><%= restaurants.last.name %></span> to place your order. If you change your mind, you can remove the dish(es)."
+                  </span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="btn-group-justified btn-group-vertical modaldishminimum-button_group">
+        <%# link_to :back do %>
+          <button type="submit" id="dishminimumSubmit" data-dismiss="modal" aria-label="Close" class="btn btn-outline-primary modalcard-button-signup" data-persist="date">Contact Support</button>
+        <%# end %>
+        <%# link_to :back do %>
+          <button type="submit" id="dishminimumSubmit" data-dismiss="modal" aria-label="Close" class="btn btn-primary modalcard-button-signup" data-persist="date">Got It</button>
+        <%# end %>
+      </div>
+      <div id="hiddenField" data-restaurant-id="" data-dish-id="" style="visibility: hidden"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="modal" role="dialog" id="orderCompleteModal" data-backdrop="static">
+  <div class="modal-dialog modalordercomplete" role="document" >
+    <div class="modal-content modalordercomplete-content">
+      <button type="button" class="modal-close close" data-dismiss="modal" aria-label="Close" style="top: -40px;right: 64px;"><span aria-hidden="true">&times;</span></button>
+      <div class="modalordercomplete-content_header_icon">
+        <%= image_tag("icon_thumb_v1.svg") %>
+      </div>
+      <div class="modalordercomplete-content_header">
+        Your order has been placed!
+      </div>
+      <div class="modalordercomplete-content_details">
+        <% if current_user.present? && @catering_order.present? %>
+          We'll send a confirmation email to <strong style="color: #5951ff"><%= current_user.email %></strong> when we've received
+          <% restaurant_ids = [] %>
+          <% @catering_order.subselections.each do |sub| %>
+            <% restaurant_ids << sub.dish.restaurant_id %>
+          <% end %>
+          <% restaurant_ids = restaurant_ids.uniq %>
+          <% if restaurant_ids.count < 2 %>
+            an order confirmation from
+            <%= Restaurant.find(restaurant_ids).first.name unless restaurant_ids.count < 1 %>.
+          <% else %>
+            order confirmations from
+            <%= Restaurant.find(restaurant_ids).first.name %> and
+            <%= Restaurant.find(restaurant_ids).last.name %>.
+          <% end %>
+        <% end %>
+      </div>
+      <div><hr style="height:4px;width:110px;margin-top:73px;background-color:#2fc2a2;"></div>
+      <div class="modalordercomplete-content_sms">
+        <%= image_tag("phone_sms_notifications_v2.svg") %>
+        <div class="modalordercomplete-content_sms-title">
+          Want delivery updates?
+
+          <div id="smssub1" class="modalordercomplete-content_sms-details">
+            Enter a number below and we'll text you when your food is on the way.
+          </div>
+          <div id="smssub2" class="modalordercomplete-content_sms-details" style="display: none">
+<!--            Great! you're now subscribed for SMS delivery updates.-->
+            You have successfully subscribed to delivery updates <span id="smssubtarget"></span>.
+          </div>
+          <input type="text" class="form-control mt-2" id="inputSms" placeholder=" " style="width: 336px;box-shadow: 0px 0px 8px 1px #ccc;margin-top: 25px !important;">
+          <button type="submit" id="continueSmsSubmit" class="btn btn-primary modalordercomplete-content_sms-button" data-persist="date">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

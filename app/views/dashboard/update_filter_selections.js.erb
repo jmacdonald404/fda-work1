@@ -1,0 +1,42 @@
+$(".restaurant-container").parent().html("<%= escape_javascript(render partial: "restaurants", locals: {catering_order: @catering_order, restaurant_id: @restaurant_id} ) %>");
+$('#restaurants-closed').show();
+$('#restaurants-open').show();
+$(".menu-container").parent().html("<%= escape_javascript(render partial: "menu", locals: {catering_order: @catering_order, restaurant: @restaurant, dishes: @dishes} ) %> ");
+$('#dishmodal-container').html("<%= escape_javascript(render partial: "modals/dish_modal" ) %>");
+//$("#loaderModal").modal('hide');
+tippy(document.querySelectorAll('img.restaurant-info-icon'), {
+  maxWidth: 483,
+  arrow: false
+});
+tippy(document.querySelectorAll('img.restaurant-info-icon-history'), {
+  maxWidth: 483,
+  arrow: false
+});
+//$("#reviewOrderModal").modal('show');
+//$('.restaurant-list-active').each(function(){
+//  if($(this).css('height')=="19px"){
+//  }else{
+//    $(this).parent().css('margin-bottom','4px');
+//  }
+//});
+//$('.restaurant-list-inactive').each(function(){
+//  if($(this).css('height')=="19px"){
+//  }else{
+//    $(this).parent().css('margin-bottom','4px');
+//  }
+//});
+$('.restaurant-list-active').each(function(){
+  if($(this).css('height')=="19px"){
+  }else{
+    $(this).parent().css('line-height','26px');
+  }
+});
+$('.restaurant-list-inactive').each(function(){
+  if($(this).css('height')=="19px"){
+  }else{
+    $(this).parent().css('line-height','26px');
+  }
+});
+setTimeout(function(){
+  $('#loaderModal').modal('hide');
+},2000);

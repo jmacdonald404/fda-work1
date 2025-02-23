@@ -1,0 +1,45 @@
+{
+  "name": "app",
+  "private": true,
+  "devDependencies": {
+    "esbuild": "^0.24.0"
+  },
+  "scripts": {
+    "clean": "rm -rf ./app/assets/builds",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --minify-identifiers=false --format=esm --outdir=app/assets/builds --public-path=/assets",
+    "build:css:compile": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules --quiet-deps",
+    "build:css:prefix": "postcss ./app/assets/builds/application.css --use=autoprefixer --output=./app/assets/builds/application.css",
+    "build:css": "yarn build:css:compile && yarn build:css:prefix",
+    "watch:css": "nodemon --watch ./app/assets/stylesheets/ --ext scss --exec \"yarn build:css\"",
+    "build:css:fontawesome": "cp -r ./node_modules/@fortawesome/fontawesome-free/webfonts ./app/assets/builds && sass ./app/assets/stylesheets/fontawesome.scss ./app/assets/builds/fontawesome.css --no-source-map --load-path=node_modules --quiet"
+  },
+  "packageManager": "yarn@4.5.1",
+  "dependencies": {
+    "@eonasdan/tempus-dominus": "^6.9.11",
+    "@fortawesome/fontawesome-free": "^6.6.0",
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^8.0.12",
+    "@popperjs/core": "^2.11.8",
+    "autoprefixer": "^10.4.20",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "date-fns": "^4.1.0",
+    "datetimepicker": "^0.1.39",
+    "esbuild-coffeescript": "^2.2.0",
+    "font-awesome": "^4.7.0",
+    "fs": "^0.0.1-security",
+    "jquery": "^3.7.1",
+    "moment": "^2.30.1",
+    "nodemon": "^3.1.7",
+    "path": "^0.12.7",
+    "popper": "^1.0.1",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0",
+    "sass": "^1.80.4",
+    "tippy.js": "^6.3.7",
+    "yarn": "^1.22.22"
+  },
+  "browserslist": [
+    "defaults"
+  ]
+}

@@ -1,0 +1,90 @@
+//$("#loaderModal").modal('hide');
+//console.log('loginfromcheckout?'+loginfromcheckout)
+//$("#loginModal").modal('hide');
+console.log('login.js.erb')
+if(typeof loginfromcheckout !== "undefined"){
+  console.log("test1")
+  $("#review-container").html("<%= escape_javascript(render partial: "modals/review_summary_modal", locals: {catering_order: @catering_order, restaurant: @restaurant, dishes: @dishes, catering_dishes: @catering_dishes} ) %> ");
+  $("#cardselect-container").html("<%= escape_javascript(render partial: "modals/card_select_modal", locals: {current_user: @current_user} ) %>");
+  $("#payment-container").html("<%= escape_javascript(render partial: "modals/payment_modal" ) %> ");
+  $("#ordercomplete-container").html("<%= escape_javascript(render partial: "modals/order_complete_modal" ) %> ");
+  $("#nav-container").html("<%= escape_javascript(render partial: "layouts/dashboard_nav" ) %> ");
+  let timeValue = $('#time-content').text();
+  let addressValue = $('#autocomplete').val();
+  let dateValue = $('#cateringDate').text();
+
+  updateValue('#reviewTime', timeValue);
+  updateValue('#summaryHeaderTime', timeValue);
+  updateValue('#reviewAddress', addressValue);
+  updateValue('#reviewDate', dateValue);
+
+  function updateValue(selector, value) {
+    $(selector).text(value);
+  }
+  let summaryItems = $('.dish-container_summary');
+  summaryItems.each(function(element) {
+    let quantity = "";
+    let dish_id = "";
+    that = $(this);
+    utensils = 0;
+    if($('.dish-container').length > 0) {
+      $('.dish-container').each(function(){
+        subid = $(this).find('.dish-quantity').data('dishId');
+        cquantity = $(this).find('.input-number').val();
+        qmult = $(this).find('.input-number').data('quantAdjusted');
+        utensils += parseInt(qmult);
+        if(subid == $(that).find('.dish-quantity').data('dishId')){
+          $(that).find('.input-number').val(cquantity);
+        }
+      });
+    }
+
+    quantity = $(this).find('.input-number').val()
+    price = $(this).find('[data-dish-price]').data('dishPrice')
+    dishTotal = parseInt(quantity) * parseInt(price)
+    $(this).find('[data-dish-total-id]').text(`$${dishTotal}`)
+    $('.dish-quantity > input').each(function(i){
+      if(i < $('.dish-quantity > input').length-1){
+        $('.utensil-total').val(utensils);
+      }
+    })
+  })
+  let items = $('.dish-container');
+  let totalArr = []
+  if (items.length > 0) {
+    items.each(function(element) {
+      let quantity = "";
+      let dish_id = "";
+      quantity = $(this).children().closest('.dish-quantity').find('.input-number').val();
+      price = $(this).children().find('.dish-price').data('dishPrice');
+      dishTotal = parseInt(quantity) * parseInt(price);
+
+      let dish_total_id = $(this).find('.dish-quantity').data('dishId');
+      let dish_total_selector = "[data-dish-total-id=" + `'${dish_total_id}'` + "]"
+      $(dish_total_selector).text(`$${dishTotal}`)
+
+      $(this).children().find('.dish-price').text(`$${dishTotal}`)
+
+      totalArr.push(dishTotal);
+    })
+  }
+
+  let delivery_fee = parseInt($('[data-delivery-fee]').data('deliveryFee'))
+  let preDelSubtotal = totalArr.reduce(function(a, b) { return a + b; }, 0)
+  let subtotal = preDelSubtotal
+  let gst = ((subtotal + delivery_fee) * 0.05)
+  let gstDisplay = ((subtotal + delivery_fee) * 0.05).toFixed(2)
+  let total = (delivery_fee + subtotal + gst).toFixed(2)
+
+  $('[data-subtotal]').text('$'+subtotal.toFixed(2))
+  $('[data-gst]').text('$'+gstDisplay)
+  $('[data-total]').text('$'+total)
+  $('#loginModal').modal('hide');
+  $("#reviewOrderModal").modal('show');
+  loginfromcheckout = false;
+}else{
+//  console.log('err')
+  document.cookie = 'awaiting_review=true';
+  window.location.href = '/dashboard';
+}
+<%#= render "modals/review_summary_modal", locals: {catering_dishes: @catering_dishes} %>

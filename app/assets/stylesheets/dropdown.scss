@@ -1,0 +1,142 @@
+.dropdown {
+  font-family: 'GothamLight';
+  &-arrow {
+    position: absolute;
+    right: 15px;
+  }
+  &-title {
+    color: white;
+    text-transform: uppercase;
+    margin-left: 31px;
+    font-size: 18px;
+  }
+
+  &-filters {
+    width: 1000px;
+    margin-top: 9px;
+
+    > .btn-group {
+      margin-right: 15px;
+      height: 50px;
+      width: 295px;
+      color: #4A4A4A;
+      background-color: white;
+      border: 1px solid #E7E7E7 !important;
+      border-radius: 5px;
+      box-shadow: 3px 3px 5px 0 rgba(0,0,0,0.25);
+
+
+      > .btn {
+        &:hover {
+          color: #4A4A4A;
+          background-color: white;
+        }
+
+        &:active {
+          color: white;
+          //background-color: #5951FF !important;
+        }
+      }
+    }
+
+    .show {
+      color: #4A4A4A;
+      background-color: white;
+    }
+  }
+
+  &-toggle {
+    font-family: "GothamBook" !important;
+    font-size: 17px !important;
+    border-color: white !important;
+    width: 100%;
+    color: #4A4A4A !important;
+    background-color: white !important;
+    box-shadow: none !important;
+    &::after {
+      display: none !important;
+    }
+  }
+
+
+  &-user {
+    border-color: white !important;
+    width: 100%;
+    background-color: white !important;
+    box-shadow: none !important;
+    font-family: SF-Pro-Display-Light;
+    font-size: 20px;
+    color: #5951ff !important;
+    letter-spacing: 0.1px;
+    padding:10px;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+
+  &-menufilters {
+    //margin-top: -45px !important;
+    left: -5px !important;
+    top: 0 !important;
+  }
+
+  &-menu {
+    width: 297px;
+    max-height: 245px;
+    overflow-y: auto;
+    top: 0;
+    box-shadow: 3px 3px 8px #3335;
+    &-type {
+      overflow-y: hidden;
+    }
+  }
+
+  &-item {
+    line-height: 30px;
+    cursor: pointer;
+    text-align: center !important;
+
+    &:hover {
+      background-color: white !important;
+      color: #2fc2a2 !important;
+      font-weight: 700;
+    }
+  }
+
+  &-iconwrapper {
+    width: 100%;
+    text-align: left;
+
+    &_icon {
+      width: 55px;
+      display: inline-block;
+      margin-left: -5px;
+      position: absolute;
+      top: 50%;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      &_new {
+        width: 28px;
+        margin-left: 5px;
+      }
+      &_new2 {
+        width: 25px;
+        margin-left: 5px;
+      }
+    }
+  }
+
+}
+.type-item {
+  text-align: left !important;
+  display: flex !important;
+}
+.select-icon {
+  width: 18px;
+  border-radius: 50%;
+  background-color: white;
+  height: 18px;
+  margin-top: 4px;
+  margin-right: 61px;
+  border: thin #242424 solid;
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 53.2 (72643) - https://sketchapp.com -->
+    <title>CACF3602-52AC-41AB-9311-D0EB80381797</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Payment4" transform="translate(-558.000000, -364.000000)">
+            <g id="Group-2" transform="translate(539.000000, 350.000000)">
+                <g id="check" transform="translate(19.000000, 14.000000)">
+                    <circle id="Oval" fill="#3BD286" cx="15" cy="15" r="15"></circle>
+                    <g id="Group" transform="translate(6.000000, 6.000000)">
+                        <g id="Path">
+                            <polygon points="20 0 0 0 0 20 20 20"></polygon>
+                            <path d="M7.04644161,13.5133356 L3.55405283,10.2162313 C3.30305861,9.979272 2.90749408,9.9906495 2.67053475,10.2416438 C2.43357541,10.492638 2.44495293,10.8882025 2.69594717,11.1251618 L6.61965317,14.8294653 C6.86142279,15.0577158 7.23957486,15.0567221 7.4801415,14.8272039 L17.3064355,5.45220395 C17.5561808,5.21392871 17.5654792,4.81830985 17.3272039,4.5685645 C17.0889287,4.31881916 16.6933098,4.30952081 16.4435645,4.54779605 L7.04644161,13.5133356 Z" fill="#FCFCFC"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

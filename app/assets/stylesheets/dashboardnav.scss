@@ -1,0 +1,21 @@
+.dashboardnav {
+  &-dropdown {
+    width: 110% !important;
+    margin-left: -10px !important;
+    margin-top: -45px !important;
+    top: 100% !important;
+    left: 14px !important;
+    > .dropdown-item {
+      padding-left: 15px;
+      text-align: left !important;
+    }
+  }
+
+  &-user {
+
+  }
+
+  &-usericon {
+    margin: 0;
+  }
+}

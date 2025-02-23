@@ -1,0 +1,62 @@
+<!--<div class="modal" tabindex="-1" role="dialog" id="loginModal" data-backdrop="static">-->
+  <div class="modal-dialog modallogin" role="document" >
+    <div class="modal-content modallogin-content">
+      <a href="/" type="button" class="modal-close close" data-dismiss="modal" aria-label="Close" style="top: -128px;right: 233px;"><span aria-hidden="true"><%= image_tag "logo_citrus_borderless_v11_2", :height => '65px', :width => '65px' %></span></a>
+      <div class="modal-header modallogin-header">
+        <h5 class="modal-title modallogin-title">Log in to Deliveryapp</h5>
+      </div>
+      <div class="modal-body modallogin-body">
+        <div id="catering_order_id2"></div>
+        <form class="needs-validation form-inline loginform" novalidate>
+          <div class="form-group row" style="width:100%;margin-left:0;margin-bottom: 30px">
+            <div class="col-md-3 modal-label"><label style="justify-content: start" for="inputEmail">Email</label></div>
+            <div class="col-md-9"><input type="text" class="modallogin-form-field form-control" id="loginInputEmail" placeholder=" " required></div>
+            <div class="col-md-3" style="min-height: 20px"></div>
+            <div class="col-md-9">
+              <div class="invalid-feedback invalid-user">
+                Incorrect email
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row" style="width:100%;margin-left:0">
+            <div class="col-md-3 modal-label"><label style="justify-content: start" for="inputPassword4">Password</label></div>
+            <div class="col-md-9"><input type="password" class="modallogin-form-field form-control password-input" id="loginInputPassword" placeholder=" " required></div>
+            <div class="modallogin-section_forgot">
+              Forgot password?
+            </div>
+            <div class="col-md-3" style="min-height: 20px"></div>
+            <div class="col-md-9">
+              <div class="invalid-feedback invalid-password">
+                Incorrect Password
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="invalid-feedback invalid-credentials">
+                Incorrect login credentials
+              </div>
+            </div>
+
+
+            <!--            <label for="inputPassword4">Password</label>-->
+            <!--            <input type="password" class="form-control password-input" id="loginInputPassword" placeholder="Password" required>-->
+          </div>
+        </form>
+      </div>
+      <div class="modallogin-section">
+        <div class="modallogin-section_signup">
+          New to Deliveryapp? <a href="/signup" class="modallogin-section_signup_link"><span class="signup-button">Sign Up</span></a>
+        </div>
+      </div>
+      <div class="modal-footer modallogin-footer">
+        <div class="btn-group-justified btn-group-vertical modallogin-button_group">
+          <button type="submit" id="loginSubmit" class="btn btn-primary modallogin-button_signup noselect" data-persist="date">Log in</button>
+        </div>
+      </div>
+      <div id="hiddenField" data-restaurant-id="" data-dish-id="" style="visibility: hidden"></div>
+    </div>
+  </div>
+<%= render "modals/reset_password_modal" %>
+<%= render "modals/reset_pw_confirm_modal" %>
+<%= render "modals/loader_modal" %>
+<!--</div>-->

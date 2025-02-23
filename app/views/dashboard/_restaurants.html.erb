@@ -1,0 +1,177 @@
+<div class="restaurant-container">
+  <span class="restaurant-title">Restaurants</span>
+
+  <%# debug %>
+  <%#= Time.now %>
+  <%# @restaurants.each do |restaurant| %>
+    <%#= restaurant.name %>
+<!--    <br>-->
+    <%# if restaurant.opening_hours.last.present? %>
+      <%#= restaurant.opening_hours.last.opens %>
+    <%# end %>
+<!--    <br>-->
+    <%# if restaurant.opening_hours.last.present? %>
+      <%#= restaurant.opening_hours.last.closes %>
+    <%# end %>
+<!--    <br>-->
+  <%# end %>
+  <div>
+    <p class="restaurant-subtitle">
+      Select up to 2
+      <%= image_tag("tooltip_questionmark.svg", class: "restaurant-info-icon", id:"select2", width: "20", :alt => "Deliveryapp Info", :data => { 'tippy-placement' => 'right' }) %>
+<!--      , :data => {:html => 'true', :toggle => 'ztt'}, :title => 'alright')-->
+      <div id="tooltip-select2" style="display:none;">
+        <div>
+          <h4 style='font-family:SF-Pro-Display-Regular'>How to order from 2 restaurants</h4>
+        </div><br>
+        <div>You can order food from up to 2 different restaurants at <br> no extra charge.</div><br>
+        <div>Step 1. add 1 or more dishes from a restaurant. <br>
+            Second, choose another compatible restaurant. <br>
+            Third, add dishes from your second restaurant selection. <br>
+        </div>
+      </div>
+    </p>
+  </div>
+  <div>
+    <hr style="background:#5951ff;height:3px;width:50px;margin-left:2px;margin-top:6px;margin-bottom:29px;">
+  </div>
+  <div class="card restaurant-card" id="restaurants-open" style="display: none">
+    <ul class="list-group list-group-flush" data-turbolinks-scroll=true'>
+      <% restaurant_ids = [] %>
+      <% @catering_order.subselections.each do |sub| %>
+        <% restaurant_ids << sub.dish.restaurant_id %>
+      <% end %>
+      <% restaurant_ids = restaurant_ids.uniq %>
+      <div id="resadded" style="display: none"><%= restaurant_ids.count %></div>
+      <div id="resids" style="display: none"><%= restaurant_ids %></div>
+      <% @restaurants.each do |restaurant| %>
+        <% if restaurant_ids.count >= 2 %>
+          <% if Restaurant.find(restaurant_ids.last).pairing_id == restaurant.pairing_id %>
+            <% restaurant_class = (restaurant.id == @restaurant_id&.to_i ? 'menu-item menu-item_active' : 'menu-item') %>
+            <% selected_class = (restaurant_ids.include?(restaurant.id) ? 'restaurant-list-selected' : 'restaurant-list-deselected') %>
+            <%# if restaurant.open? %>
+              <%#= link_to dashboard_path(restaurant_id: restaurant.id), data: {'turbolinks-action': "replace"}, class: restaurant_class do %>
+              <%= link_to "/#{restaurant.slug}", data: {'turbolinks-action': "replace"}, class: restaurant_class do %>
+                <li class="list-group-item">
+<!--                  <div class="restaurant-list-selected"></div><span class="restaurant-list-active"><%#= restaurant.name %></span>-->
+                  <% if @catering_order.catering_dishes.present? %>
+                    <div class="<%= selected_class %>"></div><span class="restaurant-list-active"><%= restaurant.name %></span>
+                  <% else %>
+                    <div class="restaurant-list-none"></div><span class="restaurant-list-active"><%= restaurant.name %></span>
+                  <% end %>
+                </li>
+              <% end %>
+            <%# end %>
+          <% end %>
+          <script type="text/javascript" charset="utf-8">
+            $('.menu-item-inactive').hide();
+          </script>
+        <% elsif restaurant_ids.count == 1 %>
+          <% if Restaurant.find(restaurant_ids.last).pairing_id == restaurant.pairing_id %>
+            <%# restaurant_class = (restaurant.id == @restaurant_id&.to_i || restaurant_ids.include?(restaurant.id) ? 'menu-item menu-item_active' : 'menu-item menu-item-inactive') %>
+            <% restaurant_class = (restaurant.id == @restaurant_id&.to_i ? 'menu-item menu-item_active' : 'menu-item menu-item-inactive') %>
+            <% selected_class = (restaurant_ids.include?(restaurant.id) ? 'restaurant-list-selected' : 'restaurant-list-deselected') %>
+            <%# if restaurant.open? %>
+              <%= link_to "/#{restaurant.slug}", data: {'turbolinks-action': "replace"}, class: restaurant_class do %>
+                <li class="list-group-item">
+                  <% if @catering_order.catering_dishes.present? %>
+                    <div class="<%= selected_class %>"></div><span class="restaurant-list-active"><%= restaurant.name %></span>
+                  <% else %>
+                    <div class="restaurant-list-none"></div><span class="restaurant-list-active"><%= restaurant.name %></span>
+                  <% end %>
+                </li>
+              <% end %>
+            <%# end %>
+          <% end %>
+        <% else %>
+          <%# restaurant_class = (restaurant.id == @restaurant_id&.to_i || restaurant_ids.include?(restaurant.id) ? 'menu-item menu-item_active' : 'menu-item menu-item-inactive') %>
+          <% restaurant_class = (restaurant.id == @restaurant_id&.to_i ? 'menu-item menu-item_active' : 'menu-item menu-item-inactive') %>
+          <% selected_class = (restaurant.id == @restaurant_id&.to_i || restaurant_ids.include?(restaurant.id) ? 'restaurant-list-selected' : 'restaurant-list-deselected') %>
+          <%# if restaurant.open? %>
+            <%= link_to "/#{restaurant.slug}", data: {'turbolinks-action': "replace"}, class: restaurant_class do %>
+              <li class="list-group-item">
+                <% if @catering_order.catering_dishes.present? %>
+                  <div class="<%= selected_class %>"></div><span class="restaurant-list-active"><%= restaurant.name %></span>
+                <% else %>
+                  <div class="restaurant-list-none"></div><span class="restaurant-list-active"><%= restaurant.name %></span>
+                <% end %>
+              </li>
+            <% end %>
+          <%# end %>
+        <% end %>
+      <% end %>
+      <% #if restaurant_ids.count >= 2 hide all non active %>
+      <% #if restaurant_ids.count == 1 show pairings %>
+      <% #else show all restaurants %>
+    </ul>
+  </div>
+  <br/>
+  <% closed_restaurants = false %>
+  <% @unavail.each do |restaurant| %>
+    <%# if !restaurant.open? %>
+      <%# closed_restaurants = true %>
+    <%# end %>
+  <% end %>
+  <%# if closed_restaurants == true %>
+    <% if restaurant_ids.count <= 2 %>
+      <div>
+        <p class="restaurant-subtitle">
+          Not Available
+          <%= image_tag("tooltip_questionmark.svg", class: "restaurant-info-icon unavailable-restaurant-icon", id:"tt-unavail", width: "20", :alt => "Deliveryapp Info", :data => { 'tippy-placement' => 'right' }) %>
+          <div id="tooltip-unavailable" style="display: none;">
+              These restaurants are currently closed or unavailable for delivery for the date and time you've selected for delivery.<br>
+              Try changing the date or time for different results.
+          </div>
+        </p>
+      </div>
+    <% end %>
+  <%# end %>
+  <div class="card restaurant-card" id="restaurants-closed" style="display: none">
+    <ul class="list-group list-group-flush" data-turbolinks-scroll=true'>
+      <%# restaurant_ids = @catering_order.subselections.pluck(:restaurant_id).uniq %>
+      <% restaurant_ids = [] %>
+      <% @catering_order.subselections.each do |sub| %>
+        <% restaurant_ids << sub.dish.restaurant_id %>
+      <% end %>
+      <% restaurant_ids = restaurant_ids.uniq %>
+      <% @unavail.each do |restaurant| %>
+        <% if restaurant_ids.count >= 2 %>
+          <% if Restaurant.find(restaurant_ids.last).pairing_id == restaurant.pairing_id %>
+            <% restaurant_class = (restaurant.id == @restaurant_id&.to_i || restaurant_ids.include?(restaurant.id) ? 'menu-item restaurant-list-closed-selected menu-item-active' : 'menu-item restaurant-list-closed') %>
+            <% selected_class = (restaurant.id == @restaurant_id&.to_i || restaurant_ids.include?(restaurant.id) ? 'restaurant-list-selected' : 'restaurant-list-deselected') %>
+            <%# if !restaurant.open? %>
+              <%= link_to "/#{restaurant.slug}", data: {'turbolinks-action': "replace"}, class: restaurant_class do %>
+                <li class="menu-item menu-item-inactive list-group-item"><span class="restaurant-list-inactive"><%= restaurant.name %></span></li>
+              <% end %>
+            <%# end %>
+          <% end %>
+          <script type="text/javascript" charset="utf-8">
+            $('.menu-item-inactive').hide();
+          </script>
+        <% elsif restaurant_ids.count == 1 %>
+          <% if Restaurant.find(restaurant_ids.last).pairing_id == restaurant.pairing_id %>
+            <% restaurant_class = (restaurant.id == @restaurant_id&.to_i || restaurant_ids.include?(restaurant.id) ? 'menu-item restaurant-list-closed-selected menu-item-active' : 'menu-item restaurant-list-closed') %>
+            <%# if !restaurant.open? %>
+              <%= link_to "/#{restaurant.slug}", data: {'turbolinks-action': "replace"}, class: restaurant_class do %>
+                <li class="menu-item menu-item-inactive list-group-item"><span class="restaurant-list-inactive"><%= restaurant.name %></span></li>
+              <% end %>
+            <%# end %>
+          <% end %>
+        <% else %>
+          <% restaurant_class = (restaurant.id == @restaurant_id&.to_i || restaurant_ids.include?(restaurant.id) ? 'menu-item restaurant-list-closed-selected menu-item-active' : 'menu-item restaurant-list-closed') %>
+          <%# if !restaurant.open? %>
+            <%= link_to "/#{restaurant.slug}", data: {'turbolinks-action': "replace"}, class: restaurant_class do %>
+              <li class="menu-item menu-item-inactive list-group-item"><span class="restaurant-list-inactive"><%= restaurant.name %></span></li>
+            <% end %>
+          <%# end %>
+        <% end %>
+      <% end %>
+      <% #if restaurant_ids.count >= 2 hide all non active %>
+      <% #if restaurant_ids.count == 1 show pairings %>
+      <% #else show all restaurants %>
+    </ul>
+  </div>
+</div>
+
+<script>
+</script>

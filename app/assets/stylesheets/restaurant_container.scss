@@ -1,0 +1,139 @@
+.restaurant {
+  &-container {
+    width: 210px;
+    margin-top: 21px;
+    margin-left: -17px;
+    padding-right: 20px;
+    margin-bottom: 80px;
+  }
+  &-list {
+
+    &-selected{
+      background-color: #2fc2a2;
+      border-radius: 50px;
+      width:15px;
+      height:14px;
+      border:thin #2fc2a2 solid;
+      display: inline-block;
+      margin-right: 9px;
+      margin-left: 3px;
+      margin-top: 6px;
+      color: white;
+      :hover {
+        color: white;
+      }
+    }
+    &-deselected {
+      background-color: white;
+      border-radius: 50px;
+      width:15px;
+      height:14px;
+      border:thin #2fc2a2 solid;
+      display: inline-block;
+      margin-right: 9px;
+      margin-left: 3px;
+      margin-top: 6px;
+      color: white;
+      :hover {
+        color: white;
+      }
+    }
+    &-none {
+      background-color: white;
+      border-radius: 50px;
+      width:20px;
+      height:20px;
+      border:thin #44D47D solid;
+      display: inline-block;
+      margin-right: 6px;
+      color: white;
+      :hover {
+        color: white;
+      }
+      visibility: hidden;
+    }
+    &-inactive {
+      //position: absolute;
+      left: 50px;
+      color: #888;
+      //top:-8px;
+      &:hover {
+        color: #242424 !important;
+      }
+    }
+    &-active {
+      //position: absolute;
+      width: 170px;
+      //top:-8px;
+    }
+    &-closed {
+      margin-left: 26px !important;
+      padding-bottom: 14px !important;
+      &-selected {
+        margin-left: 26px !important;
+        & > li > span {
+          color: black;
+        }
+      }
+    }
+  }
+  &-card {
+    border: none !important;
+    font-family: "GothamLight";
+    .menu-item {
+      color: #4A4A4A;
+      border-color: white;
+      font-weight: 100 !important;
+      padding-left: 0;
+      padding-top: 0;
+      padding-bottom: 10px;
+      font-family: "GothamBook";
+      font-size: 18px;
+      line-height: 22px;
+      margin-left: -25px;
+
+      > .list-group-item {
+        border: none;
+        padding-left: 0;
+        padding-top: 0;
+        padding-bottom: 5px;
+        display: flex !important;
+      }
+
+      &_active {
+        color: #2fc2a2 !important;
+        font-family: "GothamMedium";
+      }
+
+      &:hover {
+        text-decoration: none;
+        color: #2fc2a2; //Mint
+        //color: #F79D65; //Orange
+      }
+    }
+  }
+  &-title {
+    font-size: 26px;
+  }
+  &-info-icon {
+    margin-left: 10px;
+    margin-top: -2px;
+  }
+  &-info-icon-history {
+    margin-left: 10px;
+    margin-top: 3px;
+  }
+  &-info-cart {
+    margin-top: -7px;
+  }
+  &-subtitle, &-info-icon {
+    display: inline-block;
+  }
+  &-subtitle {
+    margin-top: 9px;
+    margin-left: 2px;
+  }
+}
+.unavailable-restaurant-icon {
+  margin-left: 13px;
+}

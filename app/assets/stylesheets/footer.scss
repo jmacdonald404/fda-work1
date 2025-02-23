@@ -1,0 +1,95 @@
+.dashboard {
+  &-footer {
+    min-height:456px;
+    display:flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #161C32;
+    &-header {
+      color: rgb(123, 136, 168);
+      margin-bottom: 18px;
+    }
+    &-list {
+      > ul {
+        list-style-type: none;
+        padding: 0;
+      }
+    }
+
+    &-link {
+      color: #555555;
+      &:hover {
+        text-decoration: none !important;
+        color: #5951ff;
+      }
+    }
+  }
+}
+
+#zestFooter {
+	flex: 0 0 auto;
+  -webkit-flex: 0 0 auto;
+	margin: 55px 0px;
+  text-align: center;
+
+
+  .footer-copyright {
+  	margin:10px;
+  	color: #ccc;
+  }
+
+  a {
+    color: #616161;
+  	font-weight: 100;
+  	font-size: 1.2em;
+  	letter-spacing: 2px;
+  }
+
+  a:hover {
+  	color: rgba(69,69,69,.7) !important;
+    text-decoration: none;
+  }
+
+  .footer-copyright {
+  	background-color: #f7fcfd;
+  	padding-top:3px;
+  	padding-bottom:3px;
+    margin-top: 2rem;
+  	text-align: center;
+  }
+
+  .inline-list {
+  	margin-top: 0.625rem;
+    // align-self: center;
+    padding-left: 0 !important;
+    li {
+    	display: inline-block;
+    	margin: 15px 10px;
+			height: 32px;
+    }
+  }
+
+  .social_icons {
+    margin: 10px;
+		// min-height: 100px;
+		// width: auto;
+	}
+
+	.myCols > a > img {
+		height: 45px;
+		margin: 0px 5px 10px 5px;
+
+	}
+
+  .love-van {
+    font-family: monospace;
+		font-size: 1.2em;
+  }
+
+}
+
+@media screen and (max-width: 767px){
+	#zestFooter {
+		text-align: center;
+	}
+}

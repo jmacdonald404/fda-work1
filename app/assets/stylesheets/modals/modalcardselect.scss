@@ -1,0 +1,228 @@
+.modalcard {
+  font-family: "SF-Pro-Display-Light";
+  width: 100% !important;
+  max-width: 800px !important;
+  margin-top: 58px!important;
+  &-orderhistory {
+    max-width: 770px !important;
+  }
+  &-title {
+    font-family: "GothamMedium";
+    font-size: 30px;
+    color: #000;
+  }
+
+  &-content {
+    border-style: none !important;
+    //margin-top: 200px;
+    padding: 45px 35px;
+  }
+
+  &-orders {
+    margin-top: 94px;
+    margin-left: -8px;
+  }
+
+  &-header {
+    border-style: none !important;
+    justify-content: center !important;
+    font-weight: 600;
+    font-family: "SF-Pro-Display-Regular";
+    &-orderhistory {
+      justify-content: left !important;
+      border-bottom: none !important;
+      margin-bottom: 3px;
+      margin-top: 42px;
+      &-past {
+        margin-top: 42px;
+      }
+    }
+  }
+
+  &-body {
+    form {
+      .form-group {
+        // margin-bottom: 2rem;
+        // margin-left: 105px;
+        margin: auto;
+        width: 400px;
+        padding: 0;
+      }
+
+      .form-control {
+        border-left: none !important;
+        border-top: none !important;
+        border-right: none !important;
+        border-radius: 0;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+
+        > input {
+          outline-color: white !important;
+        }
+
+        &.select {
+          border: 0;
+        }
+      }
+    }
+  }
+
+  &-disclaimer {
+    text-align: center;
+    margin-top: 25px;
+    color: #9B9B9B; //gray
+
+    > a {
+      color: #2fc2a2 !important;
+    }
+  }
+
+  &-subtitle {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 18px;
+    margin-right: 14%;
+    margin-left: 14%;
+    &-date {
+      margin: 0;
+      margin-bottom: 10px;
+      padding-left: 15px;
+      font-family: "GothamBook";
+      font-size: 18px;
+      color: #9B9B9B;
+    }
+  }
+
+  &-footer {
+    margin-top: 40px;
+    justify-content: center !important;
+    border: none !important;
+
+    &_link {
+      margin-top: 55px;
+      position: absolute;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    &-subtitle {
+      text-align: center;
+      width: 100%;
+      padding-top: 10px;
+      font-size: 1.1rem;
+    }
+  }
+
+  &-button_group {
+  }
+
+  &-button_signup {
+    background-color: #5951FF !important;
+    height: 60px;
+    width: 400px !important;
+  }
+
+  &-check_icon {
+    vertical-align: middle;
+  }
+}
+.invalid-feedback.min-length {
+  display: none;
+}
+
+.invalid-feedback.unmatched-error {
+  display: none;
+}
+
+.btn-outline-primary {
+  color: #5951FF !important;
+  //border-color: #5951FF !important;
+  //border-color: #3026FF96 !important; // slightly darker and transparent to make outline appear smaller
+  border: 2px solid #3026FF96 !important;
+  // font-family: "SF-Pro-Display-Regular";
+  // font-size: 1.25rem !important;
+  &:hover {
+    color: #FCFCFC !important;
+    background-color: #5951FF !important;
+    border: none !important;
+  }
+}
+.btn-primary {
+  color: #FCFCFC !important;
+  border-color: #5951FF !important;
+  background-color: #5951FF !important;
+  //&:hover {
+  //  color: #5951FF !important;
+  //  background-color: #FCFCFC !important;
+  //}
+}
+.btn {
+  //font-size: 1.2rem !important;
+  border-radius: 5px;
+
+}
+.modal {
+  //margin-top:74px;
+  //margin-top: 46vh;
+}
+.modal-backdrop {
+  //position: sticky;
+  //bottom:0;
+}
+#dishModal {
+  //margin-top: 100vh;
+}
+.order-listing, #addCard, #saved-card {
+  width: 100%;
+  border: 1px #5951ff solid;
+  border-radius: .25rem;
+  text-align: center;
+  vertical-align: middle;
+}
+.order-listing {
+  height: 70px;
+  display: inline-flex;
+  line-height: 70px;
+  margin-bottom: 23px;
+  font-family: "SF-Pro-Display-Light";
+  font-size: 24px;
+  text-decoration: none;
+  color: #4A4A4A;
+  &-caret {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 0;
+    right: 13px;
+  }
+}
+.order-cancel-subtitle {
+  margin-left: 15px;
+  color: #F41414;
+  font-size: 18px;
+  font-family: "SF-Pro-Display-Light";
+  margin-top: -20px;
+  margin-bottom: 20px;
+  //position: absolute;
+  padding-top: 9px;
+  letter-spacing: 1.5px;
+}
+#addCard, #saved-card {
+  height: 59px;
+}
+#saved-card {
+  line-height: 55px;
+  margin-bottom: 15px;
+  font-size: 1.1rem !important;
+  display: inline-flex;
+}
+.card-id {
+  text-align: left;
+}
+#cardSubmit {
+  border-radius: .25rem !important;
+}
+.fa-lock {
+  padding-right: 10px;
+}

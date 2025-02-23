@@ -1,0 +1,221 @@
+<%# if current_user&.promotion_statuses&.where("active = true")&.any? %>
+  <%# p = current_user.promotion_statuses.where("active = true").last.promotion.delivery_fee_discount_percentage %>
+<%# else %>
+  <%# p = "" %>
+<%# end %>
+<% p = 1.0 %>
+<div class="modal" tabindex="-1" role="dialog" id="reviewOrderModal" data-backdrop="static">
+  <div class="modal-dialog modalreviewsummary" role="document" >
+    <div class="modal-content modalreviewsummary-content">
+      <button type="button" class="modal-back close" id="reviewGoBack" data-dismiss="modal" aria-label="Go Back" style="top: 13px;left: 21px;">←<span aria-hidden="true"> Go back</span></button>
+      <div class="" style="margin: auto;padding-left: 12px">
+        <div class="modal-header modalreviewsummary-header">
+          <h3 class="modal-title modalreviewsummary-title">Review Your Order</h3>
+        </div>
+        <div class="modal-section modalreviewsummary-details">
+          <div class="modalreviewsummary-details-header">Might need to make adjustments?</div>
+          <div class="modalreviewsummary-details-text">Changes can be made up to 24 hours prior to your delivery.</div>
+        </div>
+        <div class="modalreviewsummary-details_container">
+          <div class="modalreviewsummary-details_item">
+            <%#=image_tag("icon_calendar_v2.svg", class: "modalreviewsummary-details_icon", :alt => "Icon Calendar")%>
+            <span class="modalordersummary-details-pre">For</span>
+            <span id="reviewDate">
+                Placeholder Date
+              </span>
+          </div>
+          <div class="modalreviewsummary-details_item">
+            <%#=image_tag("icon_time_v3.svg", class: "modalreviewsummary-details_icon", :alt => "Icon Calendar")%>
+            <span class="modalreviewsummary-details-pre">Arriving</span>
+            <span id="reviewTime">
+                Placeholder Time
+              </span>
+          </div>
+          <div class="modalreviewsummary-details_time">
+          <%#=image_tag("location_pin_icon.svg", class: "modalreviewsummary-details_time_icon", :alt => "Icon Calendar")%>
+          <span class="modalreviewsummary-details-pre">At</span>
+          <span id="reviewAddress">
+              Placeholder Address
+            </span>
+          </div>
+        </div>
+        <hr style="height:3px;width:70px;margin-top:52px;margin-left:1px;background-color:#2fc2a2;">
+        <div class="modal-body">
+        <div class="row">
+
+    	<div class="col-md-12 modalreviewsummary-listdetail-clearright">
+    		<div class="panel panel-default">
+    			<div class="panel-body">
+    				<div class="table-responsive">
+    					<table class="table table-condensed modalreviewsummary-table">
+<!--    						<thead>-->
+<!--                  <tr>-->
+<!--      							<td><strong>Qty</strong></td>-->
+<!--      							<td class="text-left"><strong></strong></td>-->
+<!--                    <td class="text-right"><strong>Price</strong></td>-->
+<!--      							<td class="text-right"><strong>Amount</strong></td>-->
+<!--                    <td class="text-right"></td>-->
+<!--                  </tr>-->
+<!--    						</thead>-->
+    						<tbody class="modalreviewsummary-table_body">
+                  <% if @catering_dishes.present? %>
+                    <% @catering_dishes.sort_by(&:created_at).each do |catering_dish| %>
+        							<tr class="dish-container_summary">
+        								<td>
+                          <div class="dish-quantity" data-catering-dish-id=<%=catering_dish.id%> data-dish-id=<%= catering_dish.subselection.id %>>
+<!--                            <span class="btn-group minus">-->
+<!--                                <button type="button" class="btn btn-default btn-number" data-type="minus" data-turbolinks-scroll=true>-->
+<!--                                    <span class="minus"> - </span>-->
+<!--                                </button>-->
+<!--                            </span>-->
+                            <input type="text" name="quant[1]" class="form-control input-number" disabled="disabled" data-quant-adjusted=<%= catering_dish.quantity.to_i*catering_dish.subselection.serves.to_i %> value=<%=catering_dish.quantity%> data-turbolinks-action="replace">
+<!--                            <span class="btn-group plus">-->
+<!--                                <button type="button" class="btn btn-default btn-number" data-type="plus" data-turbolinks-scroll=true>-->
+<!--                                    <span class="plus"> + </span>-->
+<!--                                </button>-->
+<!--                            </span>-->
+                          </div>
+                        </td>
+                        <td class="text-left modalreviewsummary-table-left">
+                          <div class="modalreviewsummary-listdetail-dish">
+                            <%= catering_dish.subselection.dish.name %>
+                          </div>
+                          <div class="modalreviewsummary-listdetail-sub">
+                            <%= catering_dish.subselection.name %>
+                          </div>
+                          <% if catering_dish.notes.present? %>
+                            <div class="modalreviewsummary-listdetail-sub">
+                              <%= catering_dish.notes %>
+                            </div>
+                          <% end %>
+                          <div class="modalreviewsummary-listdetail-restaurant">
+                            <%= catering_dish.subselection.dish.restaurant.name %>
+                          </div>
+                        </td>
+        								<td class="text-right" style="visibility: hidden" data-dish-price=<%= catering_dish.subselection.price %>>$<%= catering_dish.subselection.price %></td>
+        								<td class="text-right dish-total modalreviewsummary-listdetail-total" data-dish-total-id=<%= catering_dish.subselection.id %>>
+                        </td>
+<!--                        <td class="text-left">-->
+<!--                          <div class='modalreviewsummary-delete' data-turbolinks-scroll=true data-catering-dish-id=<%#=catering_dish.id%>>-->
+<!--                            X-->
+<!--                          </div>-->
+<!--                        </td>-->
+        							</tr>
+                    <% end %>
+                    <tr class="dish-container_summary">
+                      <td>
+                        <div class="dish-quantity">
+                          <input type="text" class="form-control input-number utensil-total" disabled="disabled" value="1" data-turbolinks-action="replace">
+                        </div>
+                      </td>
+                      <td class="text-left modalreviewsummary-table-left">
+                        <div class="modalreviewsummary-listdetail-dish">
+                          Utensils and napkins
+                        </div>
+                      </td>
+                      <td class="text-right" style="visibility: hidden">$0</td>
+                      <td class="text-right dish-total modalreviewsummary-listdetail-total" >$0
+                      </td>
+                    </tr>
+                  <% end %>
+                  <tr class="spacer">
+                    <td></td>
+                    <td></td>
+                    <td style="padding:0;padding-top: 48px;padding-bottom: 24px">
+                      <div style="
+                      position: absolute;
+                          width: 320px;
+                          right: -12px;
+                          height: 2px;
+                          background-color: #eee;">
+                        <!--                          <hr>-->
+                      </div>
+                    </td>
+                    <td style="padding:0;padding-top: 20px">
+                      <div>
+                        <!--                          <hr>-->
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="dish-container_total">
+                    <td class="thick-line pd"></td>
+                    <td class="thick-line pd" style="display: flex;justify-content: flex-end;">
+                      <%= image_tag("tooltip_questionmark.svg", class: "restaurant-info-icon-history", width: "20", :alt => "Deliveryapp Info", :data => { 'tippy-placement' => 'left', 'tippy-content' => "
+                           <div style='font-family:SF-Pro-Display-Thin;font-size:17px;letter-spacing:0.5px;'>
+                               <div>
+                                  <h4 style='font-family:SF-Pro-Display-Regular'>On-time Delivery Guarantee</h4>
+                               </div><br>
+
+                               <div>
+                                  Whether it’s getting a team meeting started or preparing for a client presentation, we know how important being on-time is.
+                               </div><br>
+                               <div>
+                                  If any of our deliveries are late by more than 5 minutes, we’ll refund the delivery fee—no questions asked.
+                               </div>
+                           </div>
+                    " }) %>
+                    </td>
+                    <td class="thick-line text-left pr pd modalordersummary-listdetail-t1">On-time Delivery</td>
+                    <% if BaseDeliveryFee.any? %>
+                      <% bdf = BaseDeliveryFee.last.base_fee %>
+                      <% if p != "" %>
+                        <td class="thick-line modalordersummary-listdetail-total text-right pr pd pl modalordersummary-listdetail-t1">$<%= sprintf("%2.2f", bdf) %></td>
+                      <% else %>
+                        <td class="thick-line modalordersummary-listdetail-total text-right pr pd pl modalordersummary-listdetail-t1" data-delivery-fee="<%= bdf %>">$<%= sprintf("%2.2f", bdf) %></td>
+                      <% end %>
+                    <% else %>
+                      <% bdf = 20.0 %>
+                      <% if p != "" %>
+                        <td class="thick-line modalordersummary-listdetail-total text-right pr pd pl modalordersummary-listdetail-t1">$20</td>
+                      <% else %>
+                        <td class="thick-line modalordersummary-listdetail-total text-right pr pd pl modalordersummary-listdetail-t1" data-delivery-fee="20">$20</td>
+                      <% end %>
+                    <% end %>
+                  </tr>
+                  <% if p != "" %>
+                    <tr>
+                      <td class="no-line"></td>
+                      <td class="no-line"></td>
+                      <td class="no-line text-left pr modalordersummary-listdetail-t1" style="color:green">Discount</td>
+                      <td id="orderDiscount" style="color: green" class="no-line modalordersummary-listdetail-total text-right pr pl modalordersummary-listdetail-t1" data-delivery-fee="<%= bdf - bdf*p/100.0%>">-$<%= sprintf("%2.2f", bdf*p/100.0) %></td>
+                    </tr>
+                  <% else %>
+                  <% end %>
+                  <tr style="display:none;">
+                    <td class="no-line "></td>
+                    <td class="no-line "></td>
+                    <td class="no-line text-left pr">Subtotal</td>
+                    <td class="no-line text-right pr pl" data-subtotal>$15</td>
+                  </tr>
+                  <tr>
+                    <td class="no-line"></td>
+                    <td class="no-line"></td>
+                    <td class="no-line text-left pr modalordersummary-listdetail-t1">GST</td>
+                    <td id="orderGst" class="no-line modalordersummary-listdetail-total text-right pr pl modalordersummary-listdetail-t1" data-gst>$123</td>
+                  </tr>
+                  <tr>
+                    <td class="no-line pt"></td>
+                    <td class="no-line pt"></td>
+                    <td class="no-line text-left pr pt modalordersummary-listdetail-t2" style="font-size: 32px">Total</td>
+                    <td class="no-line text-right pr pt pl modalordersummary-listdetail-t2" style="font-size: 32px" data-total>$123</td>
+                  </tr>
+    						</tbody>
+    					</table>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <div class="modal-footer modalreviewsummary-footer">
+      <div class="btn-group-justified btn-group-vertical modalreviewsummary-footer-button_group">
+        <button type="submit" id="continuePaymentSubmit" class="btn btn-primary modalreviewsummary-footer-button_signup" data-persist="date">Continue to Payment</button>
+      </div>
+      <div class="modalreviewsummary-footer_link">
+        <a id="skipOrder">or place the order and get an invoice <span class="zest-fwd-arrow">→</span></a>
+      </div>
+    </div>
+    <div id="hiddenField" data-restaurant-id="" data-dish-id="" style="visibility: hidden"></div>
+    </div>
+      </div>
+  </div>
+</div>

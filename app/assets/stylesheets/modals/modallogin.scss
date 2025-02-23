@@ -1,0 +1,129 @@
+.modallogin {
+  font-family: "SF-Pro-Display-Regular";
+  width: 100% !important;
+  max-width: 515px !important;
+  &-title {
+    font-size: 33px;
+    font-family: GothamMedium;
+    margin-top: 34px;
+    color: #1d1d1d;
+  }
+  &-form {
+    &-field {
+      height: 28px !important;
+      margin-left: 6px;
+      width: 80% !important;
+      padding-left: 0 !important;
+      font-family: SF-Pro-Display-Light !important;
+      font-size: 18px !important;
+      border: 1px solid #979797 !important;
+      &:focus {
+        border: 2px solid #2fc2a2 !important;
+      }
+    }
+  }
+  &-body {
+    padding-top: 42px !important;
+    padding-left: 26px !important;
+    form {
+      .form-group {
+        //margin-left: 70px;
+        margin-bottom: 2rem;
+      }
+
+      .form-control {
+        border-left: none !important;
+        border-top: none !important;
+        border-right: none !important;
+        border-radius: 0;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+
+
+        &.password-input {
+        }
+
+        > input {
+          outline-color: white !important;
+        }
+      }
+    }
+  }
+
+  &-content {
+    min-height: 485px !important;
+    border: 2px solid #5951FF !important;
+    border-radius: 6px !important;
+    margin-top: 172px;
+    box-shadow: 0px 0px 38px #e7e7e7 !important;
+  }
+
+  &-header {
+    border-style: none !important;
+    justify-content: center !important;
+  }
+
+  &-footer {
+    margin-top: 25px;
+    justify-content: center !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 44px;
+  }
+
+  &-button_group {
+    width: 100%;
+  }
+
+  &-button_signup {
+    width: 78% !important;
+    margin: auto;
+    background-color: #5951FF !important;
+    border-color: #5951FF !important;
+    height: 60px;
+    border-radius: 6px !important;
+    font-size: 20px !important;
+    font-family: SF-Pro-Display-Light;
+    padding-top: 7px !important;
+  }
+
+
+  &-section {
+    display: flex;
+    font-family: SF-Pro-Display-Light;
+    font-size: 17px;
+    letter-spacing: 0.5px;
+    position: absolute;
+    bottom: -65px;
+    width: 111%;
+    justify-content: center;
+
+    &_forgot {
+      flex-grow: 1;
+      color: #2fc2a2 !important;
+      cursor: pointer;
+      //margin-left: 56px;
+      position: absolute;
+      right: 90px;
+      top: 158px;
+      font-family: sf-pro-display-light;
+    }
+
+    &_signup {
+      flex-grow: 0;
+      margin-right: 60px;
+
+      > .signup-button {
+        color: #2fc2a2 !important;
+        cursor: pointer;
+      }
+      &_link {
+        color: #2fc2a2;
+        &:hover {
+          text-decoration: none !important;
+          color: #2fc2a2;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+.modalbanner {
+  &-header {
+    display: flex;
+    flex-direction: column;
+    //margin-top: 121px;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+  &-title {
+    border-radius: 50%;
+    width: 142px;
+    height: 142px;
+    text-align: center;
+    line-height: 142px;
+    //border: 2px grey solid;
+  }
+  &-body {
+    padding-top: 0 !important;
+  }
+  &-content {
+    border: none !important;
+    padding: 30px 45px;
+  }
+}

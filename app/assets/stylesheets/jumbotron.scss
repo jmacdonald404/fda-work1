@@ -1,0 +1,132 @@
+@use "mixins";
+
+.jumbotron {
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+  &-main {
+    //height: 530px;
+    //height: 565px; //+83px
+    height: 648px;
+    //background-color: #5951ff !important;
+    //height: 530px;
+    //background-color: #2D3958 !important;
+    background-image: url('banner_bg_production.png');
+    background-size: cover;
+    background-position-y: center;
+  }
+  &-banner {
+    //background-color: #9FDDFF;
+    background-color: #FFFFFF;
+    z-index: 2;
+    position: relative;
+    height: 68px;
+    line-height: 70px;
+    width: 607px;
+    box-shadow: 0 0 10px 1px rgba(0,0,0,0.25);
+    border-radius: 10px;
+    color: #5951ff;
+    margin: auto;
+    margin-top: 97px;
+    left: 3px;
+    //@media screen and (min-width: $mobile) {
+    //  background-color: red;
+    //}
+    //@media screen and (min-width: $mba) {
+    //  background-color: green;
+    //}
+    //@media screen and (min-width: $desktop) {
+    //  background-color: blue;
+    //}
+
+    &-title {
+      font-size: 26px;
+      margin-left: 26px;
+    }
+    &-icon {
+      font-size: 17px;
+    }
+    &-link {
+      position: absolute;
+      right: 0;
+      margin-right: 60px;
+      font-size: 14px;
+      line-height: 68px;
+    }
+  }
+  &-address {
+    padding-left: 30px !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+    margin: auto;
+    background-color: #FFFFFF !important;
+  }
+
+  &-accent {
+    margin-top: -227px;
+    //float: right;
+  }
+
+  &-title {
+    font-size: 34px !important;
+    background-color: #FFFFFF !important;
+    //padding-top: 20px;
+    color: #4A4A4A;
+    line-height: 1 !important;
+    margin-bottom: 20px !important;
+
+    &_sub {
+      font-size: 18px !important;
+      display: inline-block;
+      text-transform: uppercase;
+      color: #4A4A4A;
+    }
+  }
+
+  &-lead {
+    display: inline-block;
+    width: 920px;
+    font-family: 'GothamBook';
+    font-weight: 300 !important;
+    font-size: 18px !important;
+    margin-top: 22px;
+    line-height: 0;
+    margin-bottom: 32px;
+    color: #4A4A4A;
+  }
+
+  &-icon {
+    display: inline-block;
+
+    > img {
+      margin: 0;
+      // padding-left: 15px;
+    }
+  }
+
+  &-hr {
+    color: #5951FF !important;
+    background-color: #5951FF !important;
+    margin: -8px 0 0 0;
+    height: 2px;
+    width: 98%;
+  }
+
+  #locationField {
+    display: inline-block;
+    width: 100%;
+    // border-bottom: 5px solid  #5951FF !important;
+
+    > input {
+      caret-color: #5951FF;
+      outline-color: white;
+      border: none;
+      display: inline;
+      font-family: inherit;
+      font-size: inherit;
+      width: inherit;
+    }
+  }
+}
+#banner_event {
+  text-decoration: none !important;
+}

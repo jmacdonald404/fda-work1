@@ -1,0 +1,35 @@
+.datepicker {
+    &-days, &-months, &-years {
+      .table-condensed, .table {
+
+        thead {
+          > tr {
+            > th {
+              border: none;
+            }
+          }
+        }
+
+        .day {
+          border-color: white;
+          line-height: 28px !important;
+          &.today {
+            &::before {
+              border-bottom-color: #2fc2a2 !important;
+            }
+          }
+
+          &.active {
+            background-color: #2fc2a2 !important;
+
+          }
+        }
+
+        .month, .year {
+          &.active {
+            background-color: #2fc2a2 !important;
+          }
+        }
+      }
+    }
+}

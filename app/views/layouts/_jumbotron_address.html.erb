@@ -1,0 +1,35 @@
+<div class="row" id="address" data-turbolinks-action="replace" style="margin-top: 89px;position: relative;">
+  <div class="col col-lg-12">
+    <div class="jumbotron jumbotron-address">
+      <h1 class="display-4 jumbotron-title">
+        <div>
+<!--          <div class="jumbotron-title_sub">-->
+<!--            Deliver to-->
+<!--          </div>-->
+          <br>
+          <div id="locationField">
+            <input id="autocomplete"
+                  <% addr = @catering_order.address ||= "" %>
+                  <% if current_user %>
+                    <% if current_user.office_address.present? %>
+                      placeholder="<%= current_user.office_address %>"
+                      value="<%= current_user.office_address %>"
+                    <% else %>
+                      placeholder="Where's your office located?"
+                      value="<%= addr %>"
+                    <% end %>
+                  <% else %>
+                    placeholder="Where's your office located?"
+                    value="<%= nil %>"
+                  <% end %>
+                   type="text"/>
+          </div>
+        </div>
+      </h1>
+      <hr class="jumbotron-hr">
+      <p class="lead jumbotron-lead">
+        We currently serve Downtown Vancouver, East Vancouver, and Burnaby.
+      </p>
+    </div>
+  </div>
+</div>

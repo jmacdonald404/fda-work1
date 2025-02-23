@@ -1,0 +1,20 @@
+<div class="modal" tabindex="-1" role="dialog" id="cateringDatePicker" data-backdrop="static">
+  <div class="modal-dialog modaldatepicker" role="document" >
+    <div class="modal-content modaldatepicker-content">
+      <button type="button" class="modal-close-purple close" data-dismiss="modal" aria-label="Close" style="top: -50px;right: -129px;"><span aria-hidden="true">&times;</span></button>
+      <div class="modaldatepicker-title">
+        <span class="modal-title">Set your delivery date</span>
+      </div>
+      <div class="modaldatepicker-subtitle">We require 2 days of advanced notice</div>
+      <div class="modal-body modaldatepicker-body">
+        <%= render "modules/datepicker" %>
+      </div>
+      <div class="modal-footer modaldatepicker-footer">
+        <div class="btn-group-justified btn-group-vertical modaldatepicker-button_group">
+<!--          <button type="button" class="btn modaldatepicker-button_cancel" data-dismiss="modal">cancel</button>-->
+          <button type="button" class="btn btn-primary modaldatepicker-button_update" data-persist="date">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

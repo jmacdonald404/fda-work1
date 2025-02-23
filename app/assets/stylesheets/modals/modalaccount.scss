@@ -1,0 +1,16 @@
+.modalaccount {
+  top: 82px;
+  max-width: 913px !important;
+  font-family: SF-Pro-Display-Light;
+  &-title {
+    font-family: SF-Pro-Display-Regular;
+    font-size: 16px;
+    padding: 9px;
+  }
+  &-footer {
+    justify-content: flex-start !important;
+  }
+  &-spacer {
+    min-height: 20px;
+  }
+}

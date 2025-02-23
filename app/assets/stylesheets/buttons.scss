@@ -1,0 +1,21 @@
+.brand-button-primary {
+  width: 123px;
+  height: 30px;
+  border-color: #5951FF !important;
+  background-color: #5951FF !important;
+  font-family: "SF-Pro-Display-Regular";
+  font-size: 13px !important;
+}
+
+.brand-button-outline {
+  width: 123px;
+  height: 30px;
+  color: #5951FF !important;
+  border-color: #5951FF !important;
+  font-family: "SF-Pro-Display-Regular";
+  font-size: 13px !important;
+  &:hover {
+    color: #FCFCFC !important;
+    background-color: #5951FF !important;
+  }
+}

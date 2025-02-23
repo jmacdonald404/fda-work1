@@ -1,0 +1,50 @@
+<div class="modal" tabindex="-1" role="dialog" id="cardSelectModal" data-backdrop="static">
+  <div class="modal-dialog modalcard" role="document" >
+    <div class="modal-content modalcard-content">
+<!--      <button type="button" class="modal-back close" id="cardGoBack" aria-label="Go Back" style="top: -71px;left: -9px;">←<span aria-hidden="true"> Go back</span></button>-->
+      <button type="button" class="modal-back close" id="cardGoBack" aria-label="Go Back" style="top: 13px;left: 21px;">←<span aria-hidden="true"> Go back</span></button>
+      <div class="modal-header modalcard-header">
+        <h3 class="modal-title modalcard-title">Payment Method</h3>
+      </div>
+      <div class="modal-body modalcard-body">
+        <form class="needs-validation cardform" id="card-form" novalidate>
+          <div class="modal-section">
+            <div class="modalcard-subtitle">
+              <%= @brand %>
+              Visa, Mastercard and American Express are accepted payment methods. If you'd like to pay via direct deposit, please click <a href="#" id="skipOrder" style="color: #5951ff">here</a>
+            </div>
+          </div>
+          <div class="form-group col-md-12">
+              <div id="saved-card">
+                <div class="col-lg-2">
+                  <%=image_tag("check.svg", class: "modalcard-check_icon", :alt => "Icon Check")%>
+                </div>
+                <div class="col-lg-7 card-id">
+                  <%# Stripe::Customer.retrieve(current_user.stripe_token).sources %>
+                  <% current_user = @user %>
+                  <% current_user.stripe_token.present? ? cus = Stripe::Customer.retrieve(current_user.stripe_token).sources.data[0] : "test" %>
+                  <span id="cardBrand"><% if cus %><%= cus.brand %><% end %></span> **** <span id="cardLast4"><% if cus %><%= cus.last4 %><% end %></span>
+                </div>
+                <div class="col-lg-3">
+                  <span id="cardExpMonth"><% if cus %><%= cus.exp_month %><% end %></span>/<span id="cardExpYear"><% if cus %><%= cus.exp_year.to_s[-2..-1].to_i %><% end %></span>
+                </div>
+              </div>
+            <div id="new-cc">
+              <button type="button" id="addCard" class="btn btn-outline-primary modalcard-button-signup" data-persist="date">Add a different card</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer modalcard-footer">
+        <div class="btn-group-justified btn-group-vertical modalcard-button_group">
+          <button type="submit" id="cardSubmit" class="btn btn-primary modalcard-button_signup" data-persist="date">Place Order</button>
+          <div class="modalcard-footer-subtitle">
+            <i class="fa fa-lock fa-xs" aria-hidden="true"></i>This is a secure transaction.
+          </div>
+        </div>
+        
+      </div>
+      <div id="hiddenField" data-restaurant-id="" data-dish-id="" style="visibility: hidden"></div>
+    </div>
+  </div>
+</div>
