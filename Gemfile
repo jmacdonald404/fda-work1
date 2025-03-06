@@ -120,6 +120,8 @@ gem 'spring',        group: :development
 # SSL
 gem 'rack-ssl-enforcer'
 
+gem 'execjs'
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -155,3 +157,5 @@ end
 gem "jsbundling-rails", "~> 1.3"
 
 gem "cssbundling-rails", "~> 1.4"
+
+gem "dockerfile-rails", ">= 1.7", :group => :development
