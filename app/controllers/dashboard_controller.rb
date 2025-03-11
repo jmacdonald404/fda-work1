@@ -15,7 +15,7 @@ class DashboardController < ApplicationController
       @catering_order = CateringOrder.find(get_cookies)
       @catering_dishes = @catering_order.catering_dishes
     else
-      puts "\e[31m ################creating new catering order"
+      puts "\e[31m ################creating new catering order\e[0m"
       @catering_order = CateringOrder.create()
       @catering_order.user = current_user
       set_catering_cookie(@catering_order.id)
@@ -24,7 +24,7 @@ class DashboardController < ApplicationController
     end
 
     if restaurant_id
-      puts "\e[31m ################resto id found"
+      puts "\e[31m ################resto id found\e[0m"
       @restaurant_id = restaurant_id
       set_restaurant_id(@restaurant_id)
       @avail3 = Restaurant.order(:name)
@@ -49,11 +49,13 @@ class DashboardController < ApplicationController
       # @avail3 = Restaurant.order(:name)
       @unavail = Restaurant.order(:name)
       @restaurants = Restaurant.order(:name)
-      @dishes = restaurants.find_by(id: 1).dishes #this looks odd?
-      puts "\e[32m ###############no resto id #{@avail3.first.name}"
+      resto1 = Restaurant.find_by(id: 1)
+      @dishes = resto1&.dishes #this looks odd?
+      puts "\e[32m ###############no resto id #{@avail3&.first&.name}\e[0m"
       puts "avail3 #{@avail3}"
       puts "avail2 #{@avail2}"
       puts "unavail #{@unavail}"
+      puts "rddishert #{resto1&.dishes}"
     end
     render 'dashboard/index'
   end

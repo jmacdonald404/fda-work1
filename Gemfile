@@ -159,3 +159,5 @@ gem "jsbundling-rails", "~> 1.3"
 gem "cssbundling-rails", "~> 1.4"
 
 gem "dockerfile-rails", ">= 1.7", :group => :development
+
+gem "therubyracer", "~> 0.12.3"

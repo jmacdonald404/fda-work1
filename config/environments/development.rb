@@ -4,7 +4,10 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # add dev server to allowed hosts
-  config.hosts << "dev.lain.ch:3000"
+  config.hosts << /[a-z0-9\-]+\.fly\.dev/
+  config.hosts << /[a-z0-9\-]+\.fly\.io/
+  config.hosts << "dev.lain.ch"
+  config.hosts << "172.19.9.130"
 
   # Make code changes take effect immediately without server restart.
   config.enable_reloading = true

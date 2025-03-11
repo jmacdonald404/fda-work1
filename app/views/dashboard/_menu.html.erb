@@ -75,22 +75,22 @@
                 <%# unless dish.dietary == "" %>
 <!--                  <span class="badge badge-primary dishcard_dietarycircle"><%#= dish.dietary %></span>-->
                 <%# end %>
-                <% if dish.subselections.first.gf %>
+                <% if dish&.subselections&.first&.gf %>
                   <span class="badge badge-primary dishcard_dietarycircle"><div class="dishdietary" style="display: none">GF</div><%= image_tag("dietary_gf.svg", :alt => "Gluten Free", :title => "Gluten Free") %></span>
                 <% end %>
-                <% if dish.subselections.first.df %>
+                <% if dish&.subselections&.first&.df %>
                   <span class="badge badge-primary dishcard_dietarycircle"><div class="dishdietary" style="display: none">DF</div><%= image_tag("dietary_df.svg", :alt => "Dairy Free", :title => "Dairy Free")%></span>
                 <% end %>
-                <% if dish.subselections.first.vg %>
+                <% if dish&.subselections&.first&.vg %>
                   <span class="badge badge-primary dishcard_dietarycircle"><div class="dishdietary" style="display: none">VG</div><%= image_tag("dietary_vg.svg", :alt => "Vegan", :title => "Vegan")%></span>
                 <% end %>
-                <% if dish.subselections.first.gfo %>
+                <% if dish&.subselections&.first&.gfo %>
                   <span class="badge badge-primary dishcard_dietaryoption"><div class="dishdietary" style="display: none">GFO</div><%= image_tag("dietary_gf_option.svg", :alt => "Gluten Free Option", :title => "Gluten Free Option")%></span>
                 <% end %>
-                <% if dish.subselections.first.dfo %>
+                <% if dish&.subselections&.first&.dfo %>
                   <span class="badge badge-primary dishcard_dietaryoption"><div class="dishdietary" style="display: none">DFO</div><%= image_tag("dietary_df_option.svg", :alt => "Dairy Free Option", :title => "Dairy Free Option")%></span>
                 <% end %>
-                <% if dish.subselections.first.vgo %>
+                <% if dish&.subselections&.first&.vgo %>
                   <span class="badge badge-primary dishcard_dietaryoption"><div class="dishdietary" style="display: none">VGO</div><%= image_tag("dietary_vg_option.svg", :alt => "Vegan Option", :title => "Vegan Option")%></span>
                 <% end %>
               </div>
