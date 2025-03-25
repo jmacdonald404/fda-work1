@@ -22,7 +22,7 @@
                 <div class="col-lg-7 card-id">
                   <%# Stripe::Customer.retrieve(current_user.stripe_token).sources %>
                   <% current_user = @current_user %>
-                  <% current_user.stripe_token.present? ? cus = Stripe::Customer.retrieve(current_user.stripe_token).sources.data[0] : "test" %>
+                  <% current_user&.stripe_token&.present? ? cus = Stripe::Customer.retrieve(current_user.stripe_token).sources.data[0] : "test" %>
                   <span id="cardBrand"><% if cus %><%= cus.brand %><% end %></span> **** <span id="cardLast4"><% if cus %><%= cus.last4 %><% end %></span>
                 </div>
                 <div class="col-lg-3">
