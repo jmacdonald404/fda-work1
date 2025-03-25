@@ -1,0 +1,160 @@
+<!--<div class="modal" tabindex="-1" role="dialog" id="signUpModal">-->
+<%# render "modals/order_history_modal" %>
+<div class="modal-dialog modalaccount" role="document" >
+  <div class="modal-content modalaccount-content">
+    <div class="modal-header modalaccount-header">
+      <h3 class="modal-title modalaccount-title">Contact Information</h3>
+    </div>
+    <div class="modal-body modalaccount-body">
+      <%= form_for(current_user) do |f| %>
+        <div class="form-row">
+          <div class="form-group col-md-6 pr-4">
+            <!--              <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" required>-->
+            <%=f.label :name %>
+            <%=f.text_field :name, class: "form-control" %>
+            <div class="invalid-feedback">
+              Please provide a first name.
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <!--              <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" required>-->
+            <%=f.label :last_name %>
+            <%=f.text_field :last_name, class: "form-control" %>
+            <div class="invalid-feedback">
+              Please provide a last name.
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6 pr-4">
+            <!--              <input type="email" class="form-control" id="inputEmail" placeholder="Email" required pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">-->
+            <%=f.label :email %>
+            <%=f.text_field :email, class: "form-control" %>
+            <div class="invalid-feedback">
+              Please provide a valid email.
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <!--              <input type="text" class="form-control" id="inputPhone" placeholder="Phone" required>-->
+            <%=f.label :phone %>
+            <%=f.text_field :phone, class: "form-control" %>
+            <div class="invalid-feedback">
+              Please provide a valid phone number.
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <div id="addressField">
+              <!--                <input type="text" class="form-control" id="inputOfficeAddress" placeholder="Office Address" required>-->
+              <%=f.label :office_address %>
+              <%=f.text_field :office_address, class: "form-control", id: "autocomplete3" %>
+              <div class="invalid-feedback" id="addressError">
+                Cannot be blank.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <div id="address2Field">
+              <!--                <input type="text" class="form-control" id="inputOfficeAddress" placeholder="Office Address" required>-->
+              <%=f.label "Unit # and special instructions" %>
+              <%=f.text_field :address2, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <div class="modal-footer modalaccount-footer">
+          <div class="btn-group-justified btn-group-vertical modalaccount-button_group">
+            <button type="submit" id="userEditSubmit" class="btn btn-primary modalaccount-button_signup" data-persist="date">Save</button>
+          </div>
+          <div id="acctsave" style="display: none">Changes saved</div>
+        </div>
+        <div id="hiddenField" data-restaurant-id="" data-dish-id="" style="visibility: hidden"></div>
+      <% end %>
+    </div>
+    <!--      <div class="modal-footer modalaccount-footer">-->
+    <!--        <div class="btn-group-justified btn-group-vertical modalaccount-button_group">-->
+    <!--          <button type="submit" id="userEditSubmit" class="btn btn-primary modalaccount-button_signup" data-persist="date">Save</button>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--      <div id="hiddenField" data-restaurant-id="" data-dish-id="" style="visibility: hidden"></div>-->
+  </div>
+  <div class="modalaccount-spacer"></div>
+
+
+  <div class="modal-content modalaccount-content">
+    <%= form_for current_user do |f| %>
+      <div class="modal-header modalaccount-header">
+        <h3 class="modal-title modalaccount-title">Change Password</h3>
+      </div>
+      <div class="modal-body modalaccount-body">
+        <!--        <form class="needs-validation" novalidate>-->
+        <div class="form-row">
+          <div class="form-group col-md-6 pr-4">
+            <%#=f.label :name %>
+            <%=f.text_field :current_password, class: "form-control", id: "inputOldPassword", placeholder: "Old Password" %>
+
+            <!--                <input type="text" class="form-control" id="inputOldPassword" placeholder="Old Password" name="current_password">-->
+            <div class="invalid-feedback" id="passwordError">
+              Must be at least 8 characters.
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6 pr-4">
+            <input type="password" class="form-control" id="inputText" placeholder="New Password" name="password">
+            <div class="invalid-feedback" id="passwordError">
+              Must be at least 8 characters.
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6 pr-4">
+            <input type="password" class="form-control" id="inputPasswordConfirm" placeholder="Password Confirmation" name="password_confirmation">
+            <div class="invalid-feedback" id="passwordConfirmError">
+              Must be at least 8 characters.
+            </div>
+          </div>
+        </div>
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <!--        </form>-->
+      </div>
+      <div class="modal-footer modalaccount-footer">
+        <div class="btn-group-justified btn-group-vertical modalaccount-button_group">
+          <button type="submit" id="userEditPassSubmit" class="btn btn-primary modalaccount-button_signup" data-persist="date">Save</button>
+        </div>
+        <!--          <div id="acctpasssave" style="display: none;">Changes saved</div>-->
+        <% if flash[:success].present? %>
+          <div id="abcd">
+            <%= raw flash[:success] %>
+          </div>
+        <% end %>
+        <% if flash[:error].present? %>
+          <div id="abcd">
+            <%= raw flash[:error] %>
+          </div>
+        <% end %>
+      </div>
+      <div id="hiddenField" data-restaurant-id="" data-dish-id="" style="visibility: hidden"></div>
+      </div>
+    <% end %>
+    </div>
+<!--</div>-->
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+        $('.dashboardnav').css('margin-top','-28px')
+        $('body').on('click','#userEditSubmit',function(){
+            // console.log('smth')
+            $('#acctsave').show();
+        });
+        $('body').on('click','#userEditPassSubmit',function(){
+            $('#acctpasssave').show();
+        });
+    })
+</script>
+<%# link_to dashboard_path, id: 'modalUpdateLink', data: {'turbolinks-action': "replace"} do
+  <button type="button" id="addToOrder" class="btn btn-primary modalaccount-button_signup" data-persist="date">Sign Up</button>
+ end  %>
