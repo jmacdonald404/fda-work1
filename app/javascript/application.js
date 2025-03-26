@@ -3,7 +3,7 @@ import './add_jquery'
 import './add_popper'
 import './add_tippy'
 import './add_datefns'
-import "@hotwired/turbo-rails"
+// import "@hotwired/turbo-rails"
 import "@hotwired/stimulus"
 import "./controllers"
 import * as bootstrap from "bootstrap"

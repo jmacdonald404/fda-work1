@@ -8,9 +8,9 @@
 
 
   <%# javascript_include_tag 'application', data: { turbolinks_track: true }%>
-  <%= javascript_include_tag 'application', 'data-turbo-track': 'reload', type: "module" %>
-  <%= stylesheet_link_tag    'application', media: 'all', data: { turbolinks_track: true } %>
-  <%= stylesheet_link_tag "fontawesome", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag 'application', type: "module" %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= stylesheet_link_tag "fontawesome" %>
   <%= favicon_link_tag(source='favicon.png') %>
   <%= csrf_meta_tags %>
   <%= tag :meta, :name => "stripe-key", :content => Rails.application.credentials[:stripe_public_key] %>

@@ -20,12 +20,12 @@
     <%# Includes all stylesheet files in app/views/stylesheets %>
     <%# stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%# javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application" %>
     <script type="text/javascript">
     /*to prevent Firefox FOUC, this must be here*/
     let FF_FOUC_FIX;
     </script>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= javascript_include_tag "application", type: "module" %>
   </head>
 
   <body>
