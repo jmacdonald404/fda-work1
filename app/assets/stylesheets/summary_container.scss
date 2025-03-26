@@ -1,16 +1,18 @@
 .summary {
   &-container {
-    margin-top: 4px;
-    margin-left: -2px;
+    //margin-top: 4px;
+    //margin-left: -2px;
+    height: 80%;
   }
   &-right {
     position: absolute;
     right: 10px;
   }
   &-card {
-    position:absolute !important;
+    position:sticky !important;
     //top:-760px;
-    left:1024px;
+    top:40px;
+    //left:1024px;
     transform:scale(0.9);
     //position: sticky !important;
     //top:0;

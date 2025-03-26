@@ -25,7 +25,7 @@
   <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
 </head>
 <%= render "modals/loader_modal" %>
-<body style="margin-top:-22px;overflow-x: hidden;">
+<body style="margin-top:-22px;">
   <div class="dashboardpage-body">
     <div class="dashboardpage-body-container">
       <div class="container-fluid cateringdashboard">
@@ -129,7 +129,7 @@
     <div id="review-container"><%= render "modals/review_summary_modal", locals: {catering_dishes: @catering_dishes} %></div>
   <% end %>
 </body>
-<div class="col col-lg-2" id="summaryContainer" style="">
-  <%=render "dashboard/summary", locals: {restaurant: @restaurant, catering_dishes: @catering_dishes} %>
-</div>
+<!--<div class="col col-lg-2" id="summaryContainer" style="">-->
+  <%#render "dashboard/summary", locals: {restaurant: @restaurant, catering_dishes: @catering_dishes} %>
+<!--</div>-->
 </html>
