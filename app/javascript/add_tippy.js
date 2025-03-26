@@ -41,19 +41,32 @@ if(!document.querySelector("#loginSubmit")&&(!document.querySelector("#signUpSub
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('domloaded');
+  let twoday = new Date();
+  twoday.setDate(twoday.getDate() + 2);
 
 
-  const element = document.getElementById('datetimepicker1');
-  
+  const element = document.getElementById('dropdownDate');
+  // const element = document.getElementById('datetimepicker1');
+
   if (element) {
     new TempusDominus(element, {
       // Your Tempus Dominus options here
+      defaultDate: twoday,
       display: {
         icons: {
           time: 'fa-solid fa-clock',
           date: 'fa-solid fa-calendar',
         },
+        components : {
+          clock: false,
+          hours: false,
+          minutes: false,
+          seconds: false
+        }
       },
+      restrictions: {
+        minDate: twoday
+      }
     });
   }
 });
