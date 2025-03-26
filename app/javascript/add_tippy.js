@@ -39,17 +39,20 @@ if(!document.querySelector("#loginSubmit")&&(!document.querySelector("#signUpSub
 
 // window.tempusDominus = TempusDominus;
 
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log('domloaded');
   let twoday = new Date();
   twoday.setDate(twoday.getDate() + 2);
 
 
+
+
   const element = document.getElementById('dropdownDate');
   // const element = document.getElementById('datetimepicker1');
 
   if (element) {
-    new TempusDominus(element, {
+    const picker = new TempusDominus(element, {
       // Your Tempus Dominus options here
       defaultDate: twoday,
       display: {
@@ -64,9 +67,19 @@ document.addEventListener('DOMContentLoaded', () => {
           seconds: false
         }
       },
+      localization: {
+        format: 'dddd, MMMM d'
+      },
       restrictions: {
         minDate: twoday
       }
     });
+    // document.getElementsByClassName('tempus-dominus-widget')[0].addEventListener('click', function(){
+    //   let a = $('.day.active').attr('aria-label'); //human-readable
+    //   let b = $('.day.active').attr('data-value'); //date string
+    //   console.log('e')
+    //   $('#cateringDate').attr('data-date-selected', b)
+    //   $('#cateringDate').text(a);
+    // }) this ain't the way
   }
 });
