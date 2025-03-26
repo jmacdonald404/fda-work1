@@ -1,0 +1,142 @@
+<div class="test" style="height:100px">
+  <%= image_tag "banner_accent_v1.svg", :class => "jumbotron-accent", :height => '100px' %>
+</div>
+<div class="container">
+  <div class="modal-dialog modalcard-orderhistory" role="document" >
+    <div class="modal-content modalcard-orders">
+      <a href="/dashboard"><button type="button" class="modal-back close" aria-label="Go back" style="top: -71px;left: 14px;">←<span aria-hidden="true" style="color:#4a4a4a;font-family:SF-Pro-Display-Light;font-size:20px;width:104px"> Go back</span></button></a>
+
+      <% if @user_orders.present? %>
+        <% @user_orders.each do |order| %>
+          <% if order.delivery_date.present? && order.delivery_date > Date.today #change to pending && not cancelled %>
+            <div class="modal-header modalcard-header-orderhistory">
+              <h3 class="modal-title modalcard-title">Upcoming Orders</h3>
+            </div>
+            <div class="modalcard-body">
+              <div class="needs-validation cardform" id="card-form">
+                <div class="modal-section">
+                  <div class="modalcard-subtitle-date">
+                    <%= order.delivery_date.strftime("%^B %-d, %Y") %>
+                  </div>
+                </div>
+                <%= link_to catering_order_path(order.id) do %>
+                  <div class="col-md-12">
+                    <div class="order-listing">
+                      <div class="col-lg-9 card-id" style="padding-left:35px">
+                        <% a = 0 %>
+                        <% CateringDish.where(:catering_order_id => order.id).each do |cdish| %>
+                          <% a += 1 %>
+                          <% if cdish.present? %>
+                            <% if a > 1 %>
+                              &
+                            <% end %>
+                            <%= cdish.subselection.dish.restaurant.name %>
+                          <% end %>
+                        <% end %>
+                      </div>
+                      <div class="col-lg-3" style="padding-right:50px">
+                        <%= sprintf('$%0.2f', order.total_price.to_f / 100.0).gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1,") unless order.total_price.nil? %>
+                        <div class="order-listing-caret">
+                          <%= image_tag("caret.svg", class: "modalcard-check_icon", :alt => "Icon Arrow")%>
+                        </div>
+                        <%# order.status %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+                <% if order.cancelled_at.present? %>
+                  <div class="order-cancel-subtitle">This order was cancelled on <%= order.cancelled_at.strftime("%B %-d, %Y") %></div>
+                <% elsif order.status == "cancellation_requested" %>
+                  <div class="order-cancel-subtitle">This order is pending cancellation</div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <!--        <script>$('body').attr('style','margin-top: 0px; overflow-x:hidden'); //specific to orders page, aligns nav + footer-->
+        <!--                $('.dashboardpage-body-container').attr('style','height:100%;');-->
+        <!--        </script>-->
+      <% else %>
+        <div class="modal-header modalcard-header-orderhistory">
+          <h3 class="modal-title modalcard-title">It doesn't look like you've ordered anything yet. <br> Once you place an order, you'll see it here.</h3>
+        </div>
+        <script>$('.dashboardpage-body').attr('style','margin-top: -20px;margin-bottom: -46px'); //specific to orders page, aligns nav + footer</script>
+      <% end %>
+      <% if @user_orders.present? %>
+        <div class="modal-header modalcard-header-orderhistory modalcard-header-orderhistory-past">
+          <h3 class="modal-title modalcard-title">Past Orders</h3>
+        </div>
+        <% @user_orders.each do |order| %>
+          <% if order.delivery_date.present? && (order.delivery_date <= Date.today) %>
+            <div class="modalcard-body">
+              <div class="needs-validation cardform" id="card-form">
+                <div class="modal-section">
+                  <div class="modalcard-subtitle-date">
+                    <%= order.delivery_date.strftime("%^B %-d, %Y") %>
+                  </div>
+                </div>
+                <%= link_to catering_order_path(order.id) do %>
+                  <div class="col-md-12">
+                    <div class="order-listing">
+                      <div class="col-lg-9 card-id" style="padding-left:35px">
+                        <% a = 0 %>
+                        <% CateringDish.where(:catering_order_id => order.id).each do |cdish| %>
+                          <% if cdish.present? && cdish.subselection.present? %>
+                            <% a += 1 %>
+                            <% rname = Restaurant.where(:id => cdish.subselection.restaurant_id).last.name||= cdish.subselection.dish.restaurant.name %>
+                            <% if a > 1 %>
+                              &
+                            <% end %>
+                            <%= rname %>
+                          <% end %>
+                        <% end %>
+                      </div>
+                      <div class="col-lg-3" style="padding-right:50px">
+                        <%= sprintf('$%0.2f', order.total_price.to_f / 100.0).gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1,") unless order.total_price.nil? %>
+                        <div class="order-listing-caret">
+                          <%= image_tag("caret.svg", class: "modalcard-check_icon", :alt => "Icon Arrow")%>
+                        </div>
+                        <%# order.status %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+                <% if order.cancelled_at.present? %>
+                  <div class="order-cancel-subtitle">This order was cancelled on <%= order.cancelled_at.strftime("%B %-d, %Y") %></div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+      <div id="hiddenField" data-restaurant-id="" data-dish-id="" style="visibility: hidden"></div>
+    </div>
+  </div>
+</div>
+<script>
+
+    $dropdown = $(".dropdown > .dropdown-group");
+    $dropdownToggle = $(".dropdown-toggle");
+    $dropdownMenu = $(".dropdown-menu");
+    showClass = "show";
+
+    if (window.matchMedia("(min-width: 768px)").matches) {
+
+        $dropdown.hover(
+            function() {
+                const $this = $(this);
+                $this.addClass(showClass);
+                $this.find($dropdownToggle).attr("aria-expanded", "true");
+                $this.find($dropdownMenu).addClass(showClass);
+            },
+            function() {
+                const $this = $(this);
+                $this.removeClass(showClass);
+                $this.find($dropdownToggle).attr("aria-expanded", "false");
+                $this.find($dropdownMenu).removeClass(showClass);
+            }
+        );
+    } else {
+        $dropdown.off("mouseenter mouseleave");
+    }
+</script>
