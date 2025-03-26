@@ -84,10 +84,10 @@
               <li style="width:312px; margin-top: 23px"><span>Get updates when we launch new restaurant</span> <span style="position: relative;top:0px;">partners and dish offerings. We'll never spam you.</span></li>
               <li style="height:24px"></li>
               <li>
-                <%= form_for(@newsletter_subscriber, url: {:controller => "dashboard", :action => "create_newsletter_subscriber"}) do |f| %>
-                  <%= f.text_field :email, required: true, :id => "newsletterEmail", placeholder: "Enter your email", style: "border:none;border-radius: 3px!important;height:36px;padding-left: 5px;" %>
-                  <%= f.submit "Subscribe", :class => "btn btn-primary", :id => "newsletterSubscribe", style: "margin-left:10px" %>
-                <% end %>
+                <%# form_for(@newsletter_subscriber, url: {:controller => "dashboard", :action => "create_newsletter_subscriber"}) do |f| %>
+                  <%# f.text_field :email, required: true, :id => "newsletterEmail", placeholder: "Enter your email", style: "border:none;border-radius: 3px!important;height:36px;padding-left: 5px;" %>
+                  <%# f.submit "Subscribe", :class => "btn btn-primary", :id => "newsletterSubscribe", style: "margin-left:10px" %>
+                <%# end %>
 <!--                <input type="text" placeholder="Enter your email" style="border:none;border-radius: 3px!important;height:36px;padding-left: 5px;">-->
 <!--                <button class="btn btn-primary" style="margin-left:10px">Subscribe</button>-->
                 <div class="invalid-feedback" id="newsletterEmailError">
