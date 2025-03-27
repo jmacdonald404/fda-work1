@@ -1,5 +1,8 @@
 .modalaccount {
-  top: 82px;
+  position: inherit !important;
+  //top: 82px;
+  padding: 80px 0 80px 0;
+  margin-top: 10px;
   max-width: 913px !important;
   font-family: SF-Pro-Display-Light;
   &-title {
