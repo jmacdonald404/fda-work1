@@ -21,6 +21,7 @@
   padding: 0rem 1rem !important;
   &-brand {
     padding-left: 20px !important;
+    filter: brightness(50%) sepia(100%) saturate(10000%) hue-rotate(255deg);
   }
 }
 .jumbotron-main {
