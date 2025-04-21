@@ -1,4 +1,4 @@
-if(!document.querySelector("#loginSubmit")&&(!document.querySelector("#signUpSubmit"))) {
+if(!document.querySelector("#loginSubmit")&&(!document.querySelector("#signUpSubmit"))&&(!document.querySelector('.modalcard-orderhistory'))&&(!document.querySelector('.modalaccount'))) {
   console.log('loading banner event')
   const bannerEvent = document.getElementById('banner_event');
   bannerEvent.addEventListener('click', function(e) {

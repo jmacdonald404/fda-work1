@@ -9,8 +9,8 @@ import { TempusDominus } from '@eonasdan/tempus-dominus';
 window.tippy = tippy;
 
 console.log('begin loading tippy, checking what page is rendered');
-if(!document.querySelector("#loginSubmit")&&(!document.querySelector("#signUpSubmit"))) {
-  console.log('not on signup or login, continuing to load tippy');
+if(!document.querySelector("#loginSubmit")&&(!document.querySelector("#signUpSubmit"))&&(!document.querySelector('.modalcard-orderhistory'))&&(!document.querySelector('.modalaccount'))) {
+  console.log('not on signup or login or orders or account, continuing to load tippy');
 
 
   const template = document.getElementById('tooltip-select2');
@@ -32,7 +32,7 @@ if(!document.querySelector("#loginSubmit")&&(!document.querySelector("#signUpSub
   });
   console.log('tippy should be correctly loaded at this point');
 } else {
-  console.log('on signup or login page, not loading tippy');
+  console.log('on signup or login or orders or account page, not loading tippy');
 }
 
 
