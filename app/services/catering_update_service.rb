@@ -45,6 +45,8 @@ class CateringUpdateService
     dish_by_id = Dish.find(@dish_id)
     puts dish_by_id
     puts catering_order.to_json
+    puts catering_order.subselections.last
+    puts Subselection.find(@subselection_id)
     catering_order.subselections << Subselection.find(@subselection_id)
     puts catering_order.catering_dishes.all
     new_catering_dish = catering_order.catering_dishes.find_by(subselection_id: @subselection_id)

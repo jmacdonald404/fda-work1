@@ -6,15 +6,37 @@ let day = '';
 let dt = '';
 let pf = '';
 let tf = '';
-let restid = '';
+let restid = $('.menu-container').data('rest-id');
 var filterSelection = '';
 var customFilter = [];
 var priceDataGlobal = 9999;
+function post(){
+  $.ajax({
+    method: "POST",
+    headers: {
+      'Accept': 'application/javascript',
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    },
+    dataType: 'script',
+    url: '/dashboard/update_filter_selections',
+    data: {
+      day: day.substring(0, day.indexOf(',')).trim(),
+      delivery_time: dt.substring(0, dt.indexOf('-')).trim(),
+      price_filter: priceDataGlobal,
+      type_filter: customFilter,
+      restaurant_id: restid,
+      outerscope: true
+    }
+
+  }).then(function () {
+
+  });
+}
 
 if (window.matchMedia("(min-width: 768px)").matches) {
 // $('body').on('click','.dropdown-toggle',function(e){
-
-  $('body').on('click',function(e){
+  post();
+  $('body').on('click','.dropdown-toggle',function(e){
     $dropdownMenu.removeClass(showClass);
     $dropdownToggle.removeClass(showClass);
     $('.btn-group').removeClass(showClass);
@@ -81,26 +103,7 @@ if (window.matchMedia("(min-width: 768px)").matches) {
       dt = $('#time-content').html();
       // initAutocomplete();
       restid = $('.menu-container').data('rest-id')
-      $.ajax({
-        method: "POST",
-        headers: {
-          'Accept': 'application/javascript',
-        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-        },
-        dataType: 'script',
-        url: '/dashboard/update_filter_selections',
-        data: {
-          day: day.substring(0, day.indexOf(',')).trim(),
-          delivery_time: dt.substring(0, dt.indexOf('-')).trim(),
-          price_filter: priceDataGlobal,
-          type_filter: customFilter,
-          restaurant_id: restid,
-          outerscope: true
-        }
-
-      }).then(function () {
-
-      });
+      post();
     }
   });
 

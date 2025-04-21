@@ -21,6 +21,8 @@
   padding: 0rem 1rem !important;
   &-brand {
     padding-left: 20px !important;
+  }
+  &-w2p {
     filter: brightness(50%) sepia(100%) saturate(10000%) hue-rotate(255deg);
   }
 }
