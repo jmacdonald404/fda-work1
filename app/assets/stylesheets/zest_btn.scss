@@ -1,5 +1,6 @@
 .btn-zest {
   background-color: #8290e4;
+  border: none;
   border-color: #8290e4;
   border-radius: 4px !important;
   margin: 20px 0px;
@@ -29,4 +30,15 @@ fieldset[disabled] .btn-zest:active,
 fieldset[disabled] .btn-zest.active {
   background-color: #8290e4;
   border-color: #8290e4;
+}
+
+.zest-close {
+  font-size: 60px;
+  font-weight: 100;
+  font-family: SF-Pro-Display-Thin;
+  color: #eee !important;
+  opacity: 1 !important;
+  border-color: #8290e4;
+  border-radius: 4px !important;
+  margin: 0 !important;
 }
