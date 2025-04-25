@@ -232,7 +232,7 @@ $('body').on('click','.dishcard', function(e) {
           // console.log($(this).find('#sub-id').html())
           // console.log($(this).find('.modaldishpicker-quantity_count').val())
         })
-        console.log('subs ' + subselections);
+        console.log('subs ' + Object.keys(subselections));
 
         const delivery_date = $('#cateringDate').data('dateSelected');
         // const delivery_time = $('#time-content').data('timeSelected');

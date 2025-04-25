@@ -249,9 +249,10 @@ class DashboardController < ApplicationController
     end
 
     # render 'dashboard/index'
-    respond_to do |format|
-      format.js {render layout: false}
-    end
+    head :ok
+    # respond_to do |format|
+    #   format.js {render layout: false}
+    # end
   end
 
   def delete_catering_dish

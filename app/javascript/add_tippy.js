@@ -70,9 +70,9 @@ if(!document.querySelector("#loginSubmit")&&(!document.querySelector("#signUpSub
 
     cateringItemsArr = [];
   }
-  document.querySelector('body').onclick = function(){
-    autoSave();
-  };
+  // document.querySelector('body').onclick = function(){
+  //   autoSave();
+  // };
 } else {
   console.log('on signup or login or orders or account page, not loading tippy');
 }
@@ -88,6 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
   $('.modal').hide();
   $('.modal-backdrop').hide();
   document.getElementsByTagName('body')[0].style.overflow = 'auto'
+
+
   let twoday = new Date();
   twoday.setDate(twoday.getDate() + 2);
 

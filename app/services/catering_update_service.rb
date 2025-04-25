@@ -47,11 +47,15 @@ class CateringUpdateService
     puts catering_order.to_json
     puts catering_order.subselections.last
     puts Subselection.find(@subselection_id)
-    catering_order.subselections << Subselection.find(@subselection_id)
-    puts catering_order.catering_dishes.all
-    new_catering_dish = catering_order.catering_dishes.find_by(subselection_id: @subselection_id)
-    puts new_catering_dish
-    new_catering_dish.update!(quantity: @quantity, notes: @dish_notes)
+    # catering_order.subselections << Subselection.find(@subselection_id)
+    b = CateringRestaurant.create(catering_order: catering_order, restaurant: dish_by_id.restaurant)
+    b.save!
+    a = CateringDish.create(catering_order: catering_order, dish: dish_by_id, subselection: Subselection.find(@subselection_id),quantity: @quantity,notes: @dish_notes, restaurant: dish_by_id.restaurant, catering_restaurant: b)
+    a.save!
+    # puts catering_order.catering_dishes.all
+    # new_catering_dish = catering_order.catering_dishes.find_by(subselection_id: @subselection_id)
+    # puts new_catering_dish
+    # new_catering_dish.update!(quantity: @quantity, notes: @dish_notes)
   end
 
   def update_existing_dish
