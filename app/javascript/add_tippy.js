@@ -84,6 +84,10 @@ if(!document.querySelector("#loginSubmit")&&(!document.querySelector("#signUpSub
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('domloaded');
+
+  $('.modal').hide();
+  $('.modal-backdrop').hide();
+  document.getElementsByTagName('body')[0].style.overflow = 'auto'
   let twoday = new Date();
   twoday.setDate(twoday.getDate() + 2);
 
