@@ -31,6 +31,48 @@ if(!document.querySelector("#loginSubmit")&&(!document.querySelector("#signUpSub
     content: template
   });
   console.log('tippy should be correctly loaded at this point');
+
+  function autoSave() {
+    let catering_order_id = $('#catering_order_id').val();
+    let items = $('.dish-container');
+    let delivery_date = $('#cateringDate').data('dateSelected');
+    let time_pre = $('#time-content').html();
+    let delivery_time = time_pre.substr(1, time_pre.indexOf('-') - 2);
+    // let delivery_time = $('#time-content').text()[0, $('#time-content').text().index("-")-1];
+    let delivery_address = $('#locationField > input').val();
+    let total_price = 0;
+
+    let cateringItemsArr = [];
+
+    if (items.length > 0) {
+      total_price = Number($('[data-total]').html().replace(/[^0-9.-]+/g, "")) * 100;
+      items.each(function (element) {
+        let quantity = "";
+        let dish_id = "";
+        quantity = $(this).children().closest('.dish-quantity').find('.input-number').val();
+        dish_id = $(this).children().closest('.dish-quantity').data('cateringDishId');
+
+        cateringItemsArr.push({id: dish_id, quantity: quantity});
+      })
+      $.ajax({
+        method: "POST",
+        url: '/dashboard/bulk_update_catering_dishes',
+        data: {
+          catering_order_id: catering_order_id,
+          catering_dishes_attributes: JSON.stringify(cateringItemsArr),
+          delivery_date: delivery_date,
+          delivery_time: delivery_time,
+          delivery_address: delivery_address,
+          total_price: total_price
+        }
+      })
+    }
+
+    cateringItemsArr = [];
+  }
+  document.querySelector('body').onclick = function(){
+    autoSave();
+  };
 } else {
   console.log('on signup or login or orders or account page, not loading tippy');
 }
