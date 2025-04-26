@@ -1,0 +1,34 @@
+$("#summaryContainer").html("<%= escape_javascript(render partial: "dashboard/summary" ) %> ");
+var items = $('.dish-container');
+var summaryItems = $('.dish-container_summary');
+var totalArr = []
+if (items.length > 0) {
+    items.each(function (element) {
+        let quantity = "";
+        let dish_id = "";
+        quantity = $(this).children().closest('.dish-quantity').find('.input-number').val();
+        var price = $(this).children().find('.dish-price').data('dishPrice');
+        var dishTotal = parseInt(quantity) * parseInt(price);
+
+        let dish_total_id = $(this).find('.dish-quantity').data('dishId');
+        let dish_total_selector = "[data-dish-total-id=" + `'${dish_total_id}'` + "]"
+        $(dish_total_selector).text(`$${dishTotal}`)
+
+        $(this).children().find('.dish-price').text(`$${dishTotal}`)
+
+        totalArr.push(dishTotal);
+    })
+}
+
+var delivery_fee = parseInt($('[data-delivery-fee]').data('deliveryFee'))
+var preDelSubtotal = totalArr.reduce(function (a, b) {
+    return a + b;
+}, 0)
+var subtotal = preDelSubtotal
+var gst = ((subtotal + delivery_fee) * 0.05)
+var gstDisplay = ((subtotal + delivery_fee) * 0.05).toFixed(2)
+var total = (delivery_fee + subtotal + gst).toFixed(2)
+
+$('[data-subtotal]').text('$' + subtotal.toFixed(2))
+$('[data-gst]').text('$' + gstDisplay)
+$('[data-total]').text('$' + total)

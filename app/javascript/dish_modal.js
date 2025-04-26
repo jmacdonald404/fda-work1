@@ -9,7 +9,7 @@ setTimeout(function(){
 $('body').on('click','.quick-add-target',function(){
   const restaurant_open = $(this).data('restaurantOpen');
   //console.log(restaurant_open);
-  qawst = $(window).scrollTop();
+  var qawst = $(window).scrollTop();
   if(parseInt($('#resadded').html()) >= 2 && !$('#resids').html().includes($(this).data('restaurantId'))){ //if the number of restaurants that have dishes added is >= 2, and the current restaurant id is not in that list (if we're at max restaurant selections we still want to be able to add dishes from that restaurant), warn the user that they can't have more than 2 restaurants
     console.log('uh oh too many restaurants');
     $('#tooManyRestos').modal('show');
@@ -257,7 +257,7 @@ $('body').on('click','.dishcard', function(e) {
           }
         }).then(function() {
           $('#dishModal').modal('hide');
-          Turbolinks.visit(window.location, { action: "replace" })
+          // Turbolinks.visit(window.location, { action: "replace" })
         })
       }
 
@@ -361,7 +361,7 @@ $('body').on('shown.bs.modal','#dishModal', function(e) {
             }
           }).then(function () {
             $('#dishModal').modal('hide');
-            Turbolinks.visit(window.location, {action: "replace"})
+            //Turbolinks.visit(window.location, {action: "replace"})
           })
         }
       } else {
@@ -375,8 +375,8 @@ $('body').on('shown.bs.modal','#dishModal', function(e) {
   var subs = {};
   if($('.dish-container').length > 0) {
     $('.dish-container').each(function(){
-      subid = $(this).find('.dish-quantity').data('dishId');
-      cquantity = $(this).find('.input-number').val();
+      var subid = $(this).find('.dish-quantity').data('dishId');
+      var cquantity = $(this).find('.input-number').val();
       subs[subid] = cquantity;
     });
   }
