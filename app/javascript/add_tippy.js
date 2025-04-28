@@ -14,28 +14,7 @@ var filterSelection = '';
 var customFilter = [];
 var priceDataGlobal = 9999;
 
-if(!document.querySelector("#loginSubmit")&&(!document.querySelector("#signUpSubmit"))&&(!document.querySelector('.modalcard-orderhistory'))&&(!document.querySelector('.modalaccount'))) {
-  console.log('not on signup or login or orders or account, continuing to load tippy');
 
-
-  const template = document.getElementById('tooltip-select2');
-  const template2 = document.getElementById('tooltip-unavailable');
-  console.log(template.nodeType);
-  console.log(template2.nodeType);
-  template.style.display = template2.style.display = "block";
-  tippy(document.getElementById('tt-unavail'), {
-    maxWidth: 483,
-    arrow: false,
-    theme: 'main',
-    content: template2
-  });
-  tippy(document.getElementById('select2'), {
-    maxWidth: 483,
-    arrow: false,
-    theme: 'main',
-    content: template
-  });
-  console.log('tippy should be correctly loaded at this point');
 
 
   function autoSave() {
@@ -79,9 +58,9 @@ if(!document.querySelector("#loginSubmit")&&(!document.querySelector("#signUpSub
   // document.querySelector('body').onclick = function(){
   //   autoSave();
   // };
-} else {
-  console.log('on signup or login or orders or account page, not loading tippy');
-}
+// } else {
+//   console.log('on signup or login or orders or account page, not loading tippy');
+// }
 
 
 
@@ -337,6 +316,39 @@ $('body').on('click', '.dish-delete', function () {
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('domloaded');
+  if(!document.querySelector("#loginSubmit")&&(!document.querySelector("#signUpSubmit"))&&(!document.querySelector('.modalcard-orderhistory'))&&(!document.querySelector('.modalaccount'))) {
+    console.log('not on signup or login or orders or account, continuing to load tippy');
+
+
+    const template = document.getElementById('tooltip-select2');
+    const template2 = document.getElementById('tooltip-unavailable');
+    // console.log(template.nodeType);
+    // console.log(template2.nodeType);
+    template.style.display = template2.style.display = "block";
+    tippy(document.getElementById('tt-unavail'), {
+      maxWidth: 483,
+      arrow: false,
+      theme: 'main',
+      content: template2
+    });
+    tippy(document.getElementById('select2'), {
+      maxWidth: 483,
+      arrow: false,
+      theme: 'main',
+      content: template
+    });
+    if($('#tt-ontime').length > 0){
+      const template3 = document.getElementById('tt-ontime');
+      template3.style.display = "block"
+      tippy(document.getElementById('tt-qm'), {
+        maxWidth: 483,
+        arrow: false,
+        theme: 'main',
+        content: template3
+      });
+    }
+    console.log('tippy should be correctly loaded at this point');
+  }
   updateTotal();
   $('.modal').hide();
   $('.modal-backdrop').hide();

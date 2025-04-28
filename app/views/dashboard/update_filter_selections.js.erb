@@ -4,14 +4,42 @@ $('#restaurants-open').show();
 $(".menu-container").parent().html("<%= escape_javascript(render partial: "menu", locals: {catering_order: @catering_order, restaurant: @restaurant, dishes: @dishes} ) %> ");
 $('#dishmodal-container').html("<%= escape_javascript(render partial: "modals/dish_modal" ) %>");
 //$("#loaderModal").modal('hide');
-tippy(document.querySelectorAll('img.restaurant-info-icon'), {
-  maxWidth: 483,
-  arrow: false
+//tippy(document.querySelectorAll('img.restaurant-info-icon'), {
+//  maxWidth: 483,
+//  arrow: false
+//});
+//tippy(document.querySelectorAll('img.restaurant-info-icon-history'), {
+//  maxWidth: 483,
+//  arrow: false
+//});
+const template = document.getElementById('tooltip-select2');
+const template2 = document.getElementById('tooltip-unavailable');
+// console.log(template.nodeType);
+// console.log(template2.nodeType);
+template.style.display = template2.style.display = "block";
+tippy(document.getElementById('tt-unavail'), {
+    maxWidth: 483,
+    arrow: false,
+    theme: 'main',
+    content: template2
 });
-tippy(document.querySelectorAll('img.restaurant-info-icon-history'), {
-  maxWidth: 483,
-  arrow: false
+tippy(document.getElementById('select2'), {
+    maxWidth: 483,
+    arrow: false,
+    theme: 'main',
+    content: template
 });
+
+if($('#tt-ontime').length > 0){
+    const template3 = document.getElementById('tt-ontime');
+    template3.style.display = "block"
+    tippy(document.getElementById('tt-qm'), {
+        maxWidth: 483,
+        arrow: false,
+        theme: 'main',
+        content: template3
+    });
+}
 //$("#reviewOrderModal").modal('show');
 //$('.restaurant-list-active').each(function(){
 //  if($(this).css('height')=="19px"){

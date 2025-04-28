@@ -59,24 +59,25 @@
           </div>
         <% end %>
         <div class="dish-cost">
+          <div id="tt-ontime" style="display:none">
+            <div style='font-family:SF-Pro-Display-Thin;font-size:17px;letter-spacing:0.5px;'>
+              <div>
+                <h4 style='font-family:SF-Pro-Display-Regular'>On-time Delivery Guarantee</h4>
+              </div><br>
+
+              <div>
+                Whether it’s getting a team meeting started or preparing for a client presentation, we know how important being on-time is.
+              </div><br>
+              <div>
+                If any of our deliveries are late by more than 5 minutes, we’ll refund the delivery fee—no questions asked.
+              </div>
+            </div>
+          </div>
           <table class="table dish-cost_summary">
             <hr>
             <tbody>
               <tr>
-                <td><%= image_tag("tooltip_questionmark.svg", class: "restaurant-info-icon restaurant-info-cart", width: "20", :alt => "Deliveryapp Info", :data => { 'tippy-placement' => 'left', 'tippy-content' => "
-                         <div style='font-family:SF-Pro-Display-Thin;font-size:17px;letter-spacing:0.5px;'>
-                             <div>
-                                <h4 style='font-family:SF-Pro-Display-Regular'>On-time Delivery Guarantee</h4>
-                             </div><br>
-
-                             <div>
-                                Whether it’s getting a team meeting started or preparing for a client presentation, we know how important being on-time is.
-                             </div><br>
-                             <div>
-                                If any of our deliveries are late by more than 5 minutes, we’ll refund the delivery fee—no questions asked.
-                             </div>
-                         </div>
-                 " }) %></td>
+                <td><%= image_tag("tooltip_questionmark.svg", id: "tt-qm", class: "restaurant-info-icon restaurant-info-cart", width: "20", :alt => "Deliveryapp Info", :data => { 'tippy-placement' => 'left'}) %></td>
                 <td class="label-cell">On-time Delivery</td>
                 <% if BaseDeliveryFee.any? %>
                   <% bdf = BaseDeliveryFee.last.base_fee %>
