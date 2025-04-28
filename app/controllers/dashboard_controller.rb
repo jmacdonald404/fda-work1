@@ -177,11 +177,13 @@ class DashboardController < ApplicationController
     end
 
     if restaurant_ids.count > 1
-      if @dishquant[:r1] >= Restaurant.friendly.find(restaurants.first).min_quantity && @dishquant[:r2] >= Restaurant.friendly.find(restaurants.last).min_quantity
+      if @dishquant[:r1] >= Restaurant.friendly.find(restaurants.first.id).min_quantity && @dishquant[:r2] >= Restaurant.friendly.find(restaurants.last.id).min_quantity
         @quantities_valid = true
       end
     else
-      if @dishquant[:r1] >= Restaurant.friendly.find(restaurants.first).min_quantity
+      puts "hi"
+      puts restaurants.first.id
+      if @dishquant[:r1] >= Restaurant.friendly.find(restaurants.first.id).min_quantity
         @quantities_valid = true
       end
     end

@@ -229,7 +229,7 @@ $('#orderCheckout').on('click', function() {
       }
     })
       .then(function () {
-        // $('#reviewOrderModal').modal('show');
+        $('#reviewOrderModal').modal('show');
         $.ajax({
           method: "post",
           headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
@@ -258,7 +258,36 @@ $('#orderCheckout').on('click', function() {
 
     cateringItemsArr = [];
   }
-  })
+})
+$('body').on('click', '#continuePaymentSubmit', function () {
+  $('#reviewOrderModal').modal('hide');
+  document.cookie = 'awaiting_review=false';
+
+  if ($('#cardLast4').html().length) {
+    $('#cardSelectModal').modal('show');
+    console.log("cu has token");
+    console.log('endpoint 1')
+  } else {
+    $('#paymentModal').modal('show');
+    // console.log("ok");
+    console.log('endpoint 2')
+  }
+
+
+})
+$('body').on('click','#paymentGoBack', function(e) {
+  e.stopPropagation();
+  $('#paymentModal').modal('hide');
+  if ($('#cardBrand').html().length) {
+    $('#cardSelectModal').modal('show');
+  } else {
+    $('#reviewOrderModal').modal('show');
+  }
+});
+$('body').on('click', '#reviewGoBack', function(){
+  document.cookie = 'awaiting_review=false';
+  $('#reviewOrderModal').modal('hide');
+});
 $('body').on('click', '.cart-minus, .cart-plus', function () {
   const quantity = $(this).parents('.btn-group').parent().find('.input-number');
   const dish_id = $(this).parent().parent().parent().data('dishId');
