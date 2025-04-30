@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('not on signup or login or orders or account, continuing to load tippy');
 
 
-    const template = document.getElementById('tooltip-select2');
+    var template = document.getElementById('tooltip-select2');
     const template2 = document.getElementById('tooltip-unavailable');
     // console.log(template.nodeType);
     // console.log(template2.nodeType);
