@@ -1,4 +1,12 @@
 class CateringOrder < ActiveRecord::Base
+  
+  def self.ransackable_associations(auth_object = nil)
+    ["catering_dishes", "catering_drivers", "catering_items", "catering_restaurants", "dishes", "drivers", "office", "restaurants", "subselections", "user"]
+  end
+  def self.ransackable_attributes(auth_object = nil)
+    ["address", "cancelled_at", "charge", "charge_id", "created_at", "delivery_date", "delivery_time", "first_delivery_reminder", "id", "notify_driver", "office_id", "order_type", "preauthorized", "sms_number", "status", "stripe_invoice_id", "subscribed", "total_price", "updated_at", "user_id"]
+  end
+
   belongs_to :office, optional: true # TO BE DEPRECATED
   belongs_to :user, optional: true # maybe remove optional true if possible
 
