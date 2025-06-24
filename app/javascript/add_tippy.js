@@ -254,6 +254,28 @@ $('body').on('click', '#continuePaymentSubmit', function () {
 
 
 })
+$('body').on('click','#skipOrder', function () {
+  $.ajax({
+    method: "post",
+    url: '/dashboard/place_catering_order',
+    headers: {
+      'Accept': 'application/javascript',
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    },
+    data: {
+      preauth_payment: false
+    }
+  })
+    .then(function () {
+      $('#reviewOrderModal').modal('hide')
+      $('#paymentModal').modal('hide')
+      $('#cardSelectModal').modal('hide')
+      $('#orderCompleteModal').modal('show')
+    })
+    .catch(function (error) {
+      console.error(error)
+    })
+})
 $('body').on('click','#paymentGoBack', function(e) {
   e.stopPropagation();
   $('#paymentModal').modal('hide');
