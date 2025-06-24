@@ -152,7 +152,7 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com:
 RUN git config --global url."https://".insteadOf ssh://
 SHELL ["/bin/bash", "--login", "-c"]
 RUN npm install -g yarn
-RUN rm package-lock.json
+# RUN rm package-lock.json
 RUN yarn cache clean
 
 RUN yarn install
