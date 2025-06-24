@@ -407,14 +407,15 @@ class DashboardController < ApplicationController
         :via => :smtp,
         :via_options => default_email_options)
 
-      Pony.mail(
-          :from => from_address,
-          :to => ["admin@deliveryapp.com"],
-          :subject => "New Deliveryapp Order [UNPAID]",
-          # :body => "ORDER # FROM DETAILS INVOICE CONFIRMED",
-          :html_body => ERB.new(File.read('app/views/user_mailer/admin_nopay.text.erb')).result(binding),
-          :via => :smtp,
-          :via_options => default_email_options)
+      #uncomment to notify admin account of a skipped payment
+        # Pony.mail(
+      #     :from => from_address,
+      #     :to => ["admin@deliveryapp.com"],
+      #     :subject => "New Deliveryapp Order [UNPAID]",
+      #     # :body => "ORDER # FROM DETAILS INVOICE CONFIRMED",
+      #     :html_body => ERB.new(File.read('app/views/user_mailer/admin_nopay.text.erb')).result(binding),
+      #     :via => :smtp,
+      #     :via_options => default_email_options)
 
       puts "Email sent to #{current_user.name}"
 
@@ -432,7 +433,10 @@ class DashboardController < ApplicationController
       end
     end
     clear_cookies
-    head :ok
+    # head :ok
+    respond_to do |format|
+      format.js {render layout: false}
+    end
   end
 
   def update_sms_number

@@ -172,7 +172,7 @@ function addQuantity(quantity, type, menu_dish, dish_total_id) {
     }
   }
 }
-$('#orderCheckout').on('click', function() {
+$('body').on('click','#orderCheckout', function() {
   let catering_order_id = $('#catering_order_id').val();
   let items = $('.dish-container');
   let delivery_date = $('#cateringDate').data('dateSelected');
@@ -254,6 +254,34 @@ $('body').on('click', '#continuePaymentSubmit', function () {
 
 
 })
+$('body').on('click','#endFlow', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $('#loaderModal').modal('show')
+  location.reload();
+})
+$('body').on('click','#skipOrder', function () {
+  $.ajax({
+    method: "post",
+    url: '/dashboard/place_catering_order',
+    headers: {
+      'Accept': 'application/javascript',
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    },
+    data: {
+      preauth_payment: false
+    }
+  })
+    .then(function () {
+      $('#reviewOrderModal').modal('hide')
+      $('#paymentModal').modal('hide')
+      $('#cardSelectModal').modal('hide')
+      $('#orderCompleteModal').modal('show')
+    })
+    .catch(function (error) {
+      console.error(error)
+    })
+})
 $('body').on('click','#paymentGoBack', function(e) {
   e.stopPropagation();
   $('#paymentModal').modal('hide');
@@ -313,9 +341,19 @@ $('body').on('click', '.dish-delete', function () {
 
   });
 })
+// let domReady = (cb) => {
+//   document.readyState === 'interactive' || document.readyState === 'complete'
+//     ? cb()
+//     : document.addEventListener('DOMContentLoaded', cb);
+// };
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('domloaded');
+
+    // Display body when DOM is loaded
+  $('#loaderModal').attr('class','modal show');
+  $('#loaderModal').modal('hide');
+  
   if(!document.querySelector("#loginSubmit")&&(!document.querySelector("#signUpSubmit"))&&(!document.querySelector('.modalcard-orderhistory'))&&(!document.querySelector('.modalaccount'))) {
     console.log('not on signup or login or orders or account, continuing to load tippy');
 

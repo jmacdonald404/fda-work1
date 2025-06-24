@@ -68,7 +68,7 @@
 <!--                                    <span class="minus"> - </span>-->
 <!--                                </button>-->
 <!--                            </span>-->
-                            <input type="text" name="quant[1]" class="form-control input-number" disabled="disabled" data-quant-adjusted=<%= catering_dish.quantity.to_i*catering_dish.subselection.serves.to_i %> value=<%=catering_dish.quantity%> data-turbolinks-action="replace">
+                            <input type="text" name="quant[1]" class="form-control input-number" disabled="disabled" data-quant-adjusted=<%= catering_dish.quantity.to_i*catering_dish.subselection.serves.to_i %> value=<%=catering_dish.quantity%> >
 <!--                            <span class="btn-group plus">-->
 <!--                                <button type="button" class="btn btn-default btn-number" data-type="plus" data-turbolinks-scroll=true>-->
 <!--                                    <span class="plus"> + </span>-->
@@ -105,7 +105,7 @@
                     <tr class="dish-container_summary">
                       <td>
                         <div class="dish-quantity">
-                          <input type="text" class="form-control input-number utensil-total" disabled="disabled" value="1" data-turbolinks-action="replace">
+                          <input type="text" class="form-control input-number utensil-total" disabled="disabled" value="1">
                         </div>
                       </td>
                       <td class="text-left modalreviewsummary-table-left">

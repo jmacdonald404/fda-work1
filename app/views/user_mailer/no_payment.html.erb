@@ -1,0 +1,14 @@
+Hi <%= @order.user.name %>,<br><br>
+
+We've received your order for <%= @order.delivery_date.strftime("%B %d, %Y") %> at <%= @order.delivery_time %> from
+  <% if @order.subselections.pluck(:restaurant_id).uniq.count < 2 %>
+    <%= Restaurant.find(@order.subselections.pluck(:restaurant_id).uniq.first).name unless @order.subselections.pluck(:restaurant_id).uniq.count < 1 %>.
+  <% else %>
+    <%= Restaurant.find(@order.subselections.pluck(:restaurant_id).uniq.last).name %>
+  <% end %>
+  <br><br>
+A member from our team will be reaching out to you directly within 4 business hours to finalize your order. <br><br>
+
+If you have any immediate requests, please contact support at support@deliveryapp.com <br><br>
+
+Team Deliveryapp

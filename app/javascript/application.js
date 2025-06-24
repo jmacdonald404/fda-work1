@@ -1,7 +1,7 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import './add_jquery'
 import './add_popper'
-import './add_tippy'
+
 import './add_datefns'
 // import "@hotwired/turbo-rails"
 import "@hotwired/stimulus"
@@ -27,3 +27,4 @@ import './underscore'
 import './login'
 import './banner_event'
 import './dropdowns'
+import './add_tippy'

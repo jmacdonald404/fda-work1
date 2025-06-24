@@ -6,7 +6,7 @@
 <%# end %>
 <% p = 1.0 %>
 
-<div class="summary-container" data-turbolinks-action="replace">
+<div class="summary-container">
   <div id="order-summary-card" class="card summary-card">
     <div class="summary-card_header">
       <p class="summary-card_header_order">Your order</p>
@@ -25,13 +25,13 @@
           <div class="dish-container">
             <div class="dish-quantity" data-catering-dish-id=<%=catering_dish.id%> data-dish-id=<%= catering_dish.subselection.id %>>
               <span class="btn-group minus">
-                  <button type="button" class="btn btn-default btn-number" data-type="minus" data-turbolinks-scroll=true>
+                  <button type="button" class="btn btn-default btn-number" data-type="minus">
                       <span class="minus cart-minus"> - </span>
                   </button>
               </span>
-              <input type="text" name="quant[1]" class="form-control input-number" disabled="disabled" value=<%=catering_dish.quantity%> data-turbolinks-action="replace" data-quant-adjusted=<%= catering_dish.quantity.to_i*catering_dish.subselection.serves.to_i %> data-summary-restaurant-id=<%= catering_dish.subselection.dish.restaurant_id %>>
+              <input type="text" name="quant[1]" class="form-control input-number" disabled="disabled" value=<%=catering_dish.quantity%> data-quant-adjusted=<%= catering_dish.quantity.to_i*catering_dish.subselection.serves.to_i %> data-summary-restaurant-id=<%= catering_dish.subselection.dish.restaurant_id %>>
               <span class="btn-group plus">
-                  <button type="button" class="btn btn-default btn-number" data-type="plus" data-turbolinks-scroll=true>
+                  <button type="button" class="btn btn-default btn-number" data-type="plus">
                       <span class="plus cart-plus"> + </span>
                   </button>
               </span>
@@ -48,7 +48,7 @@
               </div>
               <div>
                 <span class="dish-restaurant"><%= catering_dish.subselection.dish.restaurant.name %></span>
-                <div class='dish-delete summary-right' data-turbolinks-scroll=true data-remote="true" data-catering-dish-id=<%=catering_dish.id%>>
+                <div class='dish-delete summary-right' data-remote="true" data-catering-dish-id=<%=catering_dish.id%>>
                   remove
                 </div>
               </div>
@@ -123,17 +123,17 @@
     </div>
     <div style="position: absolute;bottom: -80px;">Need help with an order? <br><a href="#" style="color: #5951ff">Get in touch with an order specialist</a></div>
     <% if @catering_dishes.present? && current_user.nil? %>
-      <div class="summary-card_checkout" data-turbolinks-action="replace">
+      <div class="summary-card_checkout">
         <button type="button" id="loginCheckout" class="btn btn-primary summary-card_checkout_button">Checkout - <span class="label-value total" data-total></span></button>
       </div>
     <% elsif @catering_dishes.present? && current_user.present? %>
       <%# if @catering_order.address.present? %>
       <% if @catering_order.present? %>
-        <div class="summary-card_checkout" data-turbolinks-action="replace">
+        <div class="summary-card_checkout">
           <button type="button" id="orderCheckout" class="btn btn-primary summary-card_checkout_button">Checkout - <span class="label-value total" data-total></span></button>
         </div>
       <% else %>
-        <div class="summary-card_checkout" data-turbolinks-action="replace">
+        <div class="summary-card_checkout">
           <button type="button" id="orderCheckout" class="btn btn-primary summary-card_checkout_button">Checkout - <span class="label-value total" data-total></span></button>
         </div>
       <% end %>

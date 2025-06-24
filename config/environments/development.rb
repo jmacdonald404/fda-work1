@@ -8,7 +8,7 @@ Rails.application.configure do
   config.hosts << /[a-z0-9\-]+\.fly\.dev/
   config.hosts << /[a-z0-9\-]+\.fly\.io/
   config.hosts << "dev.lain.ch"
-  config.hosts << "172.19.9.130"
+  config.hosts << "etalon.cc:6060"
 
   # Make code changes take effect immediately without server restart.
   config.enable_reloading = true

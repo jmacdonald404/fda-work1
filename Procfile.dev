@@ -1,4 +1,4 @@
-web: env RUBY_DEBUG_OPEN=true bin/rails server --binding=0.0.0.0
+web: env RUBY_DEBUG_OPEN=true bin/rails server --binding=0.0.0.0 --port=6060
 js: yarn build --watch
 css: yarn watch:css
 fa: yarn build:css:fontawesome --watch
