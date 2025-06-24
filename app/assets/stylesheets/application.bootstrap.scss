@@ -554,7 +554,10 @@ input.middle:focus,
   border-color: #2fc2a2 !important;
 }
 
-.zest-spinner {
+.fda-spinner {
+  > img {
+    filter: brightness(50%) sepia(100%) saturate(10000%) hue-rotate(255deg);
+  }
   width: 101px;
   //height: 100px;
   //background-color: #0CB1C4;

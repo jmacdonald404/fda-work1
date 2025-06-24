@@ -351,8 +351,9 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('domloaded');
 
     // Display body when DOM is loaded
-  document.body.style.visibility = 'visible';
-
+  $('#loaderModal').attr('class','modal show');
+  $('#loaderModal').modal('hide');
+  
   if(!document.querySelector("#loginSubmit")&&(!document.querySelector("#signUpSubmit"))&&(!document.querySelector('.modalcard-orderhistory'))&&(!document.querySelector('.modalaccount'))) {
     console.log('not on signup or login or orders or account, continuing to load tippy');
 

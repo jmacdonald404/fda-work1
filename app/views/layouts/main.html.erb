@@ -16,7 +16,7 @@
   <%= tag :meta, :name => "stripe-key", :content => Rails.application.credentials[:stripe_public_key] %>
   
 
-  <script async="async" src="https://js.stripe.com/v3/"></script>
+  <!--<script async="async" src="https://js.stripe.com/v3/"></script>-->
   <%# javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   <script>
     /*to prevent Firefox FOUC, this must be here*/
@@ -26,7 +26,7 @@
 </head>
 <%= render "modals/loader_modal" %>
 <!--FOUC fix (visibility:hidden, shows when ready)-->
-<body style="margin-top:-22px;visibility:hidden;">
+<body style="margin-top:-22px;">
   <!--FOUC fix for FF-->
   <script>
     0
