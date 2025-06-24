@@ -52,7 +52,8 @@ $('body').on('click','.quick-add-target',function(){
         delivery_time: delivery_time
       }
     }).then(function () {
-      Turbolinks.visit(window.location, {action: "replace"});
+      // Turbolinks.visit(window.location, {action: "replace"});
+      console.log('n2')
     })
   } else {
     console.log('resto closed')
@@ -65,7 +66,8 @@ $('body').on('click','.quick-add-target',function(){
 $('body').on('click','.dishcard', function(e) {
   var that = "";
   if (e.target.id == "quickAdd"){
-    qawst = $(window).scrollTop();
+    // qawst = $(window).scrollTop();
+    console.log('n')
   } else if (e.target.id == "viewDish"){
     $('#dishModal').modal('show');
     that = $(this);

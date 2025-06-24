@@ -172,7 +172,7 @@ function addQuantity(quantity, type, menu_dish, dish_total_id) {
     }
   }
 }
-$('#orderCheckout').on('click', function() {
+$('body').on('click','#orderCheckout', function() {
   let catering_order_id = $('#catering_order_id').val();
   let items = $('.dish-container');
   let delivery_date = $('#cateringDate').data('dateSelected');
@@ -253,6 +253,12 @@ $('body').on('click', '#continuePaymentSubmit', function () {
   }
 
 
+})
+$('body').on('click','#endFlow', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $('#loaderModal').modal('show')
+  location.reload();
 })
 $('body').on('click','#skipOrder', function () {
   $.ajax({
@@ -335,9 +341,18 @@ $('body').on('click', '.dish-delete', function () {
 
   });
 })
+// let domReady = (cb) => {
+//   document.readyState === 'interactive' || document.readyState === 'complete'
+//     ? cb()
+//     : document.addEventListener('DOMContentLoaded', cb);
+// };
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('domloaded');
+
+    // Display body when DOM is loaded
+  document.body.style.visibility = 'visible';
+
   if(!document.querySelector("#loginSubmit")&&(!document.querySelector("#signUpSubmit"))&&(!document.querySelector('.modalcard-orderhistory'))&&(!document.querySelector('.modalaccount'))) {
     console.log('not on signup or login or orders or account, continuing to load tippy');
 

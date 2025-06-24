@@ -28,9 +28,9 @@
             <div class="hvrbox">
               <img class="card-img-top dishcard_image" src=<%= dish.image_url%> src2=<%= dish.image_url2 %> alt="Card image cap">
               <div class="hvrbox-layer_top">
-                <div class="hvrbox-text dse" id="viewDish" data-turbolinks-scroll=true data-dish-id="<%= dish.id %>" data-restaurant-id="<%= @restaurant.id %>" data-dish-quantity="<%= find_existing_dishes_quantity(dish.id) %>" data-restaurant-open="<%= @restaurant.open3(@catering_order.delivery_time) %>"
+                <div class="hvrbox-text dse" id="viewDish" data-dish-id="<%= dish.id %>" data-restaurant-id="<%= @restaurant.id %>" data-dish-quantity="<%= find_existing_dishes_quantity(dish.id) %>" data-restaurant-open="<%= @restaurant.open3(@catering_order.delivery_time) %>"
                 >View</div>
-                <div class="hvrbox-text quick-add-target" data-turbolinks-scroll=true data-dish-id="<%= dish.id %>" data-restaurant-id="<%= @restaurant.id %>" data-dish-quantity="<%= find_existing_dishes_quantity(dish.id) %>" data-restaurant-open="<%= @restaurant.open3(@catering_order.delivery_time) %>" id="quickAdd">Quick Add</div>
+                <div class="hvrbox-text quick-add-target" data-dish-id="<%= dish.id %>" data-restaurant-id="<%= @restaurant.id %>" data-dish-quantity="<%= find_existing_dishes_quantity(dish.id) %>" data-restaurant-open="<%= @restaurant.open3(@catering_order.delivery_time) %>" id="quickAdd">Quick Add</div>
               </div>
             </div>
             <div class="card-body dishcard_body">

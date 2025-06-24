@@ -433,7 +433,10 @@ class DashboardController < ApplicationController
       end
     end
     clear_cookies
-    head :ok
+    # head :ok
+    respond_to do |format|
+      format.js {render layout: false}
+    end
   end
 
   def update_sms_number

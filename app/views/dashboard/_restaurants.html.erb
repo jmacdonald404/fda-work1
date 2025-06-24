@@ -36,7 +36,7 @@
     <hr style="background:#5951ff;height:3px;width:50px;margin-left:2px;margin-top:6px;margin-bottom:29px;">
   </div>
   <div class="card restaurant-card" id="restaurants-open" style="display: none">
-    <ul class="list-group list-group-flush" data-turbolinks-scroll=true'>
+    <ul class="list-group list-group-flush">
       <% restaurant_ids = [] %>
       <% @catering_order.subselections.each do |sub| %>
         <% restaurant_ids << sub.dish.restaurant_id %>
@@ -50,8 +50,7 @@
             <% restaurant_class = (restaurant.id == @restaurant_id&.to_i ? 'menu-item menu-item_active' : 'menu-item') %>
             <% selected_class = (restaurant_ids.include?(restaurant.id) ? 'restaurant-list-selected' : 'restaurant-list-deselected') %>
             <%# if restaurant.open? %>
-              <%#= link_to dashboard_path(restaurant_id: restaurant.id), data: {'turbolinks-action': "replace"}, class: restaurant_class do %>
-              <%= link_to "/#{restaurant.slug}", data: {'turbolinks-action': "replace"}, class: restaurant_class do %>
+              <%= link_to "/#{restaurant.slug}", class: restaurant_class do %>
                 <li class="list-group-item">
 <!--                  <div class="restaurant-list-selected"></div><span class="restaurant-list-active"><%#= restaurant.name %></span>-->
                   <% if @catering_order.catering_dishes.present? %>
@@ -72,7 +71,7 @@
             <% restaurant_class = (restaurant.id == @restaurant_id&.to_i ? 'menu-item menu-item_active' : 'menu-item menu-item-inactive') %>
             <% selected_class = (restaurant_ids.include?(restaurant.id) ? 'restaurant-list-selected' : 'restaurant-list-deselected') %>
             <%# if restaurant.open? %>
-              <%= link_to "/#{restaurant.slug}", data: {'turbolinks-action': "replace"}, class: restaurant_class do %>
+              <%= link_to "/#{restaurant.slug}", class: restaurant_class do %>
                 <li class="list-group-item">
                   <% if @catering_order.catering_dishes.present? %>
                     <div class="<%= selected_class %>"></div><span class="restaurant-list-active"><%= restaurant.name %></span>
@@ -88,7 +87,7 @@
           <% restaurant_class = (restaurant.id == @restaurant_id&.to_i ? 'menu-item menu-item_active' : 'menu-item menu-item-inactive') %>
           <% selected_class = (restaurant.id == @restaurant_id&.to_i || restaurant_ids.include?(restaurant.id) ? 'restaurant-list-selected' : 'restaurant-list-deselected') %>
           <%# if restaurant.open? %>
-            <%= link_to "/#{restaurant.slug}", data: {'turbolinks-action': "replace"}, class: restaurant_class do %>
+            <%= link_to "/#{restaurant.slug}", class: restaurant_class do %>
               <li class="list-group-item">
                 <% if @catering_order.catering_dishes.present? %>
                   <div class="<%= selected_class %>"></div><span class="restaurant-list-active"><%= restaurant.name %></span>
@@ -127,7 +126,7 @@
     <% end %>
   <%# end %>
   <div class="card restaurant-card" id="restaurants-closed" style="display: none">
-    <ul class="list-group list-group-flush" data-turbolinks-scroll=true'>
+    <ul class="list-group list-group-flush">
       <%# restaurant_ids = @catering_order.subselections.pluck(:restaurant_id).uniq %>
       <% restaurant_ids = [] %>
       <% @catering_order.subselections.each do |sub| %>
@@ -140,7 +139,7 @@
             <% restaurant_class = (restaurant.id == @restaurant_id&.to_i || restaurant_ids.include?(restaurant.id) ? 'menu-item restaurant-list-closed-selected menu-item-active' : 'menu-item restaurant-list-closed') %>
             <% selected_class = (restaurant.id == @restaurant_id&.to_i || restaurant_ids.include?(restaurant.id) ? 'restaurant-list-selected' : 'restaurant-list-deselected') %>
             <%# if !restaurant.open? %>
-              <%= link_to "/#{restaurant.slug}", data: {'turbolinks-action': "replace"}, class: restaurant_class do %>
+              <%= link_to "/#{restaurant.slug}", class: restaurant_class do %>
                 <li class="menu-item menu-item-inactive list-group-item"><span class="restaurant-list-inactive"><%= restaurant.name %></span></li>
               <% end %>
             <%# end %>
@@ -152,7 +151,7 @@
           <% if Restaurant.find(restaurant_ids.last).pairing_id == restaurant.pairing_id %>
             <% restaurant_class = (restaurant.id == @restaurant_id&.to_i || restaurant_ids.include?(restaurant.id) ? 'menu-item restaurant-list-closed-selected menu-item-active' : 'menu-item restaurant-list-closed') %>
             <%# if !restaurant.open? %>
-              <%= link_to "/#{restaurant.slug}", data: {'turbolinks-action': "replace"}, class: restaurant_class do %>
+              <%= link_to "/#{restaurant.slug}", class: restaurant_class do %>
                 <li class="menu-item menu-item-inactive list-group-item"><span class="restaurant-list-inactive"><%= restaurant.name %></span></li>
               <% end %>
             <%# end %>
@@ -160,7 +159,7 @@
         <% else %>
           <% restaurant_class = (restaurant.id == @restaurant_id&.to_i || restaurant_ids.include?(restaurant.id) ? 'menu-item restaurant-list-closed-selected menu-item-active' : 'menu-item restaurant-list-closed') %>
           <%# if !restaurant.open? %>
-            <%= link_to "/#{restaurant.slug}", data: {'turbolinks-action': "replace"}, class: restaurant_class do %>
+            <%= link_to "/#{restaurant.slug}", class: restaurant_class do %>
               <li class="menu-item menu-item-inactive list-group-item"><span class="restaurant-list-inactive"><%= restaurant.name %></span></li>
             <% end %>
           <%# end %>

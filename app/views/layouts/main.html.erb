@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=0.9" />
-  <meta name="turbolinks-cache-control" content="no-preview">
   <title><%= content_for?(:title) ? yield(:title) : "Deliveryapp — Office Catering" %></title>
-
-
-  <%# javascript_include_tag 'application', data: { turbolinks_track: true }%>
-  <%= javascript_include_tag 'application', type: "module" %>
+  <%= csrf_meta_tags %>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= stylesheet_link_tag "fontawesome" %>
-  <%= favicon_link_tag(source='favicon.png') %>
-  <%= csrf_meta_tags %>
-  <%= tag :meta, :name => "stripe-key", :content => Rails.application.credentials[:stripe_public_key] %>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <%= favicon_link_tag(source='favicon.png') %>
 
-  <script src="https://js.stripe.com/v3/"></script>
+  <%= javascript_include_tag 'application', type: "module", defer: true %>
+  
+  
+  <%= tag :meta, :name => "stripe-key", :content => Rails.application.credentials[:stripe_public_key] %>
+  
+
+  <script async="async" src="https://js.stripe.com/v3/"></script>
   <%# javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   <script>
     /*to prevent Firefox FOUC, this must be here*/
@@ -25,7 +25,12 @@
   <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
 </head>
 <%= render "modals/loader_modal" %>
-<body style="margin-top:-22px;">
+<!--FOUC fix (visibility:hidden, shows when ready)-->
+<body style="margin-top:-22px;visibility:hidden;">
+  <!--FOUC fix for FF-->
+  <script>
+    0
+  </script>
   <div class="dashboardpage-body">
     <div class="dashboardpage-body-container">
       <div class="container-fluid cateringdashboard">
@@ -128,6 +133,8 @@
     <div id="ordercomplete-container"><%= render "modals/order_complete_modal" %></div>
     <div id="review-container"><%= render "modals/review_summary_modal", locals: {catering_dishes: @catering_dishes} %></div>
   <% end %>
+  <!--FOUC fix for JS free browsers-->
+  <noscript><style>body { visibility: visible !important; }</style></noscript>
 </body>
 <!--<div class="col col-lg-2" id="summaryContainer" style="">-->
   <%#render "dashboard/summary", locals: {restaurant: @restaurant, catering_dishes: @catering_dishes} %>

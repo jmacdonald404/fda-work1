@@ -92,8 +92,8 @@ def default_email_options
 { 
     :address              => "smtp.gmail.com",
 :port                 => 587,
-:user_name            => "hello@deliveryapp.com",
-:password             => ENV['GMAIL_PASSWORD'],
+:user_name            => Rails.application.credentials.dig(:smtp, :user_name),
+:password             => Rails.application.credentials.dig(:smtp, :password),
 :authentication       => "plain",
 # :enable_starttls_auto => true
 }
